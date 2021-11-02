@@ -31,7 +31,7 @@ chemotherapy_or_radiotherapy_codes = codelist_from_csv(
 )
 
 pan_cancer_codes = codelist_from_csv(
-    "codelists/Pancreatic_cancer_ctv3.csv",
+    "local_codelists/Pancreatic_cancer_ctv3.csv",
     system="ctv3",
     column="CTV3ID",
 )
