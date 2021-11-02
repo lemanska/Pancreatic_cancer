@@ -1,0 +1,25 @@
+CTV3ID,CTV3PreferredTermDesc,CTV3Source
+B17..,Malignant tumour of pancreas,CTV3Map_Code_And_Term
+B170.,Malignant tumour of head of pancreas,CTV3Map_Code_And_Term
+B171.,Malignant tumour of body of pancreas,CTV3Map_Code_And_Term
+B172.,Malignant tumour of tail of pancreas,CTV3Map_Code_And_Term
+B173.,Malignant tumour of pancreatic duct,CTV3Map_Code_And_Term
+B174.,Malignant tumour of Islets of Langerhans,CTV3Map_Code_And_Term
+B175.,"Malignant neoplasm, overlapping lesion of pancreas",CTV3Map_Code_And_Term
+B17y.,Malignant neoplasm of other specified sites of pancreas,CTV3Map_Code_And_Term
+B17y0,Malignant neoplasm of ectopic pancreatic tissue,CTV3Map_Code_And_Term
+B17yz,Malignant neoplasm of specified site of pancreas NOS,CTV3Map_Code_And_Term
+B17z.,Malignant neoplasm of pancreas NOS,CTV3Map_Code_And_Term
+X309C,Malignant cystic tumour of exocrine pancreas,CTV3_Children
+X309D,Cystadenocarcinoma of pancreas,CTV3_Children
+X78Pf,Malignant tumour of endocrine pancreas,CTV3_Children
+X78Pg,Carcinoma of endocrine pancreas,QOF
+X78gc,Malignant tumour of exocrine pancreas,CTV3_Children
+X78gd,Carcinoma of pancreas,CTV3_Children
+XE1xz,Ca head of pancreas,CTV3_Children
+XE1y1,Ca body of pancreas,CTV3_Children
+XE1y3,Ca tail of pancreas,CTV3_Children
+XE1y5,Ca pancreas NOS,CTV3_Children
+XaB1g,Carcinoma of head of pancreas,CTV3_Children
+XaB1h,Carcinoma of body of pancreas,CTV3_Children
+XaB1i,Carcinoma of tail of pancreas,CTV3_Children

@@ -1,3 +1,28 @@
 {
-  "files": {}
+  "files": {
+    "opensafely-cancer-excluding-lung-and-haematological.csv": {
+      "id": "opensafely/cancer-excluding-lung-and-haematological/2020-04-15",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/cancer-excluding-lung-and-haematological/2020-04-15/",
+      "downloaded_at": "2021-10-28 21:16:08.572721Z",
+      "sha": "8fa1164b587028c4bd5903289e0948642d399e56"
+    },
+    "opensafely-chemotherapy-or-radiotherapy.csv": {
+      "id": "opensafely/chemotherapy-or-radiotherapy/2020-04-15",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/chemotherapy-or-radiotherapy/2020-04-15/",
+      "downloaded_at": "2021-10-28 21:16:09.066655Z",
+      "sha": "cd33b4059bb1f9afcf4d04ff46bf72f088548750"
+    },
+    "opensafely-ethnicity.csv": {
+      "id": "opensafely/ethnicity/2020-04-27",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/ethnicity/2020-04-27/",
+      "downloaded_at": "2021-10-28 20:33:20.611002Z",
+      "sha": "3d2f3998b71863a80b24d60f6f4282e14191ae13"
+    },
+    "user-agleman-pa_ca_referrals.csv": {
+      "id": "user/agleman/pa_ca_referrals/5f377d98",
+      "url": "https://codelists.opensafely.org/codelist/user/agleman/pa_ca_referrals/5f377d98/",
+      "downloaded_at": "2021-11-02 19:22:00.114312Z",
+      "sha": "83ebe3f3fcd5c0d40dd0f0d6111ff948dac9bfc5"
+    }
+  }
 }
