@@ -1,11 +1,5 @@
 {
   "files": {
-    "opensafely-cancer-excluding-lung-and-haematological.csv": {
-      "id": "opensafely/cancer-excluding-lung-and-haematological/2020-04-15",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/cancer-excluding-lung-and-haematological/2020-04-15/",
-      "downloaded_at": "2021-10-28 21:16:08.572721Z",
-      "sha": "8fa1164b587028c4bd5903289e0948642d399e56"
-    },
     "opensafely-chemotherapy-or-radiotherapy.csv": {
       "id": "opensafely/chemotherapy-or-radiotherapy/2020-04-15",
       "url": "https://codelists.opensafely.org/codelist/opensafely/chemotherapy-or-radiotherapy/2020-04-15/",
@@ -18,11 +12,17 @@
       "downloaded_at": "2021-10-28 20:33:20.611002Z",
       "sha": "3d2f3998b71863a80b24d60f6f4282e14191ae13"
     },
-    "user-agleman-pa_ca_referrals.csv": {
-      "id": "user/agleman/pa_ca_referrals/5f377d98",
-      "url": "https://codelists.opensafely.org/codelist/user/agleman/pa_ca_referrals/5f377d98/",
-      "downloaded_at": "2021-11-02 19:22:00.114312Z",
-      "sha": "83ebe3f3fcd5c0d40dd0f0d6111ff948dac9bfc5"
+    "user-agleman-cancer_referrals_pancreatic_cancer_snomed.csv": {
+      "id": "user/agleman/cancer_referrals_pancreatic_cancer_snomed/2fcb5724",
+      "url": "https://codelists.opensafely.org/codelist/user/agleman/cancer_referrals_pancreatic_cancer_snomed/2fcb5724/",
+      "downloaded_at": "2021-11-03 14:06:29.566920Z",
+      "sha": "cf5290c404f4a8ca9dd09b3eeb4e12dd083b584b"
+    },
+    "user-agleman-pancreatic_cancer_snomed.csv": {
+      "id": "user/agleman/pancreatic_cancer_snomed/11566403",
+      "url": "https://codelists.opensafely.org/codelist/user/agleman/pancreatic_cancer_snomed/11566403/",
+      "downloaded_at": "2021-11-03 14:06:29.850687Z",
+      "sha": "68a1b0eb6896e6d6bb94fd912a90bc11e8797b0c"
     }
   }
 }

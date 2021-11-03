@@ -19,8 +19,8 @@ ethnicity_codes_16 = codelist_from_csv(
 # cancer
 
 cancer_referral_codes = codelist_from_csv(
-    "codelists/user-agleman-pa_ca_referrals.csv",
-    system="ctv3",
+    "codelists/user-agleman-cancer_referrals_pancreatic_cancer_snomed.csv",
+    system="snomed",
     column="code",
 )
 
@@ -31,9 +31,9 @@ chemotherapy_or_radiotherapy_codes = codelist_from_csv(
 )
 
 pan_cancer_codes = codelist_from_csv(
-    "local_codelists/Pancreatic_cancer_ctv3.csv",
+    "codelists/user-agleman-cancer_referrals_pancreatic_cancer_snomed.csv",
     system="ctv3",
-    column="CTV3ID",
+    column="code",
 )
 
 # HbA1c
