@@ -32,7 +32,7 @@ chemotherapy_or_radiotherapy_codes = codelist_from_csv(
 
 pan_cancer_codes = codelist_from_csv(
     "codelists/user-agleman-cancer_referrals_pancreatic_cancer_snomed.csv",
-    system="ctv3",
+    system="snomed",
     column="code",
 )
 
