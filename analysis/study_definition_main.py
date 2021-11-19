@@ -15,39 +15,24 @@ study = StudyDefinition(
     
     population=patients.satisfying(
         """
-        has_ca AND
+        pa_ca AND
         (age >=18 AND age <= 110)
-        """,
-        has_ca=patients.with_these_clinical_events(
-        pan_cancer_codes,
-        on_or_after=window_date ## this is to restrict to cases in the time window from Jan 2015
-        )
-    ),
+        """
+        ),
     pa_ca=patients.with_these_clinical_events(
         pan_cancer_codes,
-        on_or_after=window_date,
+        on_or_after="1950-01-01", #no restriction or time, or sometime in 1950, looking for date of first diagnosis 
         find_last_match_in_period=True,
-        include_date_of_match=True,
-        include_month=True, 
-        include_day=True,
+        # include_date_of_match=True,
+        # include_month=True, 
+        # include_day=True,
         returning="binary_flag", # later could do it as cat for the type of pa ca
         return_expectations={"incidence": 1.0},
     ),
-    #so the above code to extarct dates (we have everyone in this study sample with PaCa) work fine, 
-    #gives dates for everyone, but no restriction in the dammy data on the time windeow of intererts
-    # Pleae can you check my code and confirm that the poipulation "satifying" will take case of this?
-
-    #The below code is anohter way of extarcting date of PaCa diagnosis - but it does not give me dates for everyone
-    # Again a question, becasue everyone in real data will have diagnosis on or after 2015 will this then 
-    # work in real data? 
-    
-    #also a quesiton there - on how do I find out when it was fist diagnosed?
-    #I mean "find_first_match_in_period" is it the perios of 20125-present? 
-    #so what if they had it first time codes before this time window? 
     ca_date=patients.with_these_clinical_events(
         pan_cancer_codes,
-        on_or_after=window_date,
-        find_first_match_in_period=True, # how do i find out when it was firt diagnosed 
+        on_or_after="1950-01-01",
+        find_first_match_in_period=True, # find out when it was first diagnosed
         returning="date",
         date_format="YYYY-MM-DD",
         return_expectations={"incidence": 1.0},
