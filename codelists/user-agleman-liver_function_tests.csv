@@ -1,0 +1,201 @@
+code,term
+1000621000000104,Serum alkaline phosphatase level
+1000631000000102,Alkaline phosphatase isoenzyme studies
+1000811000000109,Serum total protein
+1000841000000105,Serum alkaline phosphatase liver isoenzyme level
+1000881000000102,Serum aspartate aminotransferase level
+1000891000000100,Plasma aspartate transaminase level
+1002541000000108,Aspartate aminotransferase/alanine aminotransferase ratio
+1005651000000101,Plasma total protein
+1013041000000106,Plasma alkaline phosphatase level
+1013181000000104,Alkaline phosphatase - bile isoenzyme level
+1013191000000102,Alkaline phosphatase liver isoenzyme level
+1013211000000103,Plasma alanine aminotransferase level
+1018251000000107,Serum alanine aminotransferase level
+1024201000000105,Fluid sample bilirubin
+1026761000000106,Total bilirubin level
+1031081000000108,Liver function tests
+1031101000000102,Aspartate aminotransferase level
+104481004,"Alanine aminotransferase measurement, method with pyridoxal-5'-phosphate"
+104482006,"Alanine aminotransferase measurement, method without pyridoxal-5'-phosphate"
+104539007,Aspartate amino transferase/alanine amino transferase ratio measurement
+1105851000000108,Enzyme activity of alanine aminotransferase in plasma
+1106041000000108,Enzyme activity of alkaline phosphatase in plasma
+1106071000000102,Enzyme activity of aspartate aminotransferase in serum
+1106081000000100,Enzyme activity of alanine aminotransferase in serum
+1106681000000105,Enzyme activity of aspartate aminotransferase in plasma
+1107221000000109,Substance concentration of total bilirubin in serum
+1107231000000106,Substance concentration of total bilirubin in plasma
+115474007,Measurement of ratio of analyte to alkaline phosphatase
+143920004,Liver function tests (& general)
+143921000,Liver function tests normal
+143922007,Liver function tests abnormal
+143927001,Liver function tests
+143929003,Liver function tests NOS
+143930008,Serum bilirubin (& level)
+143931007,Serum bilirubin normal
+143932000,Serum bilirubin raised
+143933005,Total bilirubin (& level)
+143934004,Conjugated bilirubin level
+143935003,Unconjugated bilirubin level
+143937006,Serum conjugated:total bilirubin ratio (& level)
+143938001,Plasma conjugated bilirubin level
+143939009,Plasma total bilirubin level
+143940006,Plasma unconjugated bilirubin level
+143941005,Serum conjugated bilirubin level
+143942003,Serum total bilirubin level
+143943008,Serum unconjugated bilirubin level
+143944002,Serum bilirubin NOS
+143945001,Alkaline phosphatase (& level (& serum))
+143948004,Alkaline phosphatase level
+143949007,Alkaline phosphatase liver isoenzyme level
+143953009,Plasma alkaline phosphatase bile isoenzyme level
+143955002,Plasma alkaline phosphatase liver isoenzyme level
+143956001,Serum alkaline phosphatase bile isoenzyme level
+143958000,Serum alkaline phosphatase liver isoenzyme level
+143959008,Serum alkaline phosphatase NOS
+143983000,Plasma aspartate transaminase level
+144061009,Serum total protein (& level)
+144068003,Plasma total protein (& level)
+145385002,Sample bilirubin &/or fluid
+145387005,Fluid sample total protein (& level)
+158548001,[D]Alkaline phosphatase raised
+158662000,[D]Abnormal liver function test
+158664004,[D]Abnormal liver function test NOS
+160931000119108,Increased aspartate transaminase level
+166601004,Liver function tests (& [general])
+166602006,Liver function tests normal
+166603001,Liver function tests abnormal
+166607000,Liver function tests
+166609002,Liver function tests NOS
+166611006,Serum bilirubin normal
+166612004,Serum bilirubin raised
+166613009,Total bilirubin (& level)
+166616001,Serum bilirubin borderline
+166617005,Serum conjugated:total bilirubin ratio (& level)
+166618000,Plasma conjugated bilirubin level
+166619008,Plasma total bilirubin level
+166620002,Plasma unconjugated bilirubin level
+166621003,Serum conjugated bilirubin level
+166622005,Serum total bilirubin level
+166623000,Serum unconjugated bilirubin level
+166624006,Serum bilirubin NOS
+166625007,Serum alkaline phosphatase (& level)
+166626008,Serum alkaline phosphatase normal
+166627004,Serum alkaline phosphatase raised
+166629001,Alkaline phosphatase - liver isoenzyme (& level)
+166634002,Plasma alkaline phosphatase bile isoenzyme level
+166636000,Plasma alkaline phosphatase liver isoenzyme level
+166637009,Serum alkaline phosphatase bile isoenzyme level
+166639007,Serum alkaline phosphatase liver isoenzyme level
+166640009,Serum alkaline phosphatase NOS
+166667003,Aspartate aminotransferase/serum glutamic oxaloacetic transaminase level normal
+166668008,Aspartate aminotransferase/serum glutamic oxaloacetic transaminase level abnormal
+166669000,Aspartate aminotransferase serum level raised
+166676005,Plasma aspartate transaminase level
+166779005,Serum total protein (& level)
+166780008,Serum total protein normal
+166781007,Serum total protein abnormal
+166792008,Plasma total protein (& level)
+168157000,Fluid sample total protein (& level)
+168161006,Fluid sample gamma G-T measurement
+1738009,"Bilirubin, neonatal measurement"
+176271000119108,Elevated total bilirubin
+193991000000109,Alkaline phosphatase liver enzyme measurement
+201321000000108,Serum alanine aminotransferase level
+207277005,[D]Alkaline phosphatase raised
+207471009,[D]Abnormal liver function test
+207474001,[D]Abnormal liver function test NOS
+219651000000107,Serum alanine aminotransferase level
+219661000000105,Serum alanine aminotransferase level
+24831009,Intestinal alkaline phosphatase measurement
+250635006,Alanine transaminase level
+250637003,Alanine aminotransferase - blood measurement
+250641004,Aspartate aminotransferase serum measurement
+26165005,Increased bilirubin level
+26958001,Hepatic function panel
+26966005,"Bilirubin, total measurement"
+269928005,Fluid sample alkaline phosphatase measurement
+269992001,Liver function tests (& general)
+269994000,Serum bilirubin (& level)
+269995004,Alkaline phosphatase (& level (& serum))
+270992008,Serum total protein measurement
+270995005,Plasma total protein measurement
+271012001,Fluid sample total protein measurement
+271052004,Alkaline phosphatase - bone isoenzyme measurement
+271053009,Alkaline phosphatase liver isoenzyme level
+271234008,Serum alkaline phosphatase measurement
+271548009,Alkaline phosphatase liver isoenzyme measurement
+271552009,Liver function tests - general
+274770006,Alkaline phosphatase raised
+275796002,Alkaline phosphatase in sample
+30279007,Placental alkaline phosphatase measurement
+304383000,Total protein measurement
+310885000,Alkaline phosphatase bone isoenzyme raised
+313366007,Alkaline phosphatase - bile isoenzyme measurement
+313840000,Serum total bilirubin measurement
+313843003,Serum alkaline phosphatase liver isoenzyme measurement
+313844009,Plasma alkaline phosphatase liver isoenzyme measurement
+313845005,Serum alkaline phosphatase bone isoenzyme measurement
+313846006,Plasma alkaline phosphatase bone isoenzyme measurement
+313847002,Serum alkaline phosphatase bile isoenzyme measurement
+313848007,Plasma alkaline phosphatase bile isoenzyme measurement
+313849004,Serum gamma-glutamyl transferase measurement
+313850004,Plasma gamma-glutamyl transferase measurement
+313852007,Plasma aspartate transaminase measurement
+313951004,Plasma total bilirubin measurement
+34608000,Alanine aminotransferase measurement
+359986008,"Bilirubin, total measurement"
+365771003,Finding of alkaline phosphatase level
+365772005,Finding of serum alkaline phosphatase level
+365786009,Finding of bilirubin level
+365787000,Finding of serum bilirubin level
+373679006,Aspartate transaminase level
+389567002,Plasma alkaline phosphatase level
+389583002,Alkaline phosphatase - bile isoenzyme level
+389584008,Alkaline phosphatase liver isoenzyme level
+389586005,Plasma alanine aminotransferase level
+390299000,Plasma alkaline phosphatase level
+390315009,Alkaline phosphatase - bile isoenzyme level
+390316005,Alkaline phosphatase liver isoenzyme level
+390318006,Plasma alanine aminotransferase level
+390961000,Plasma alanine aminotransferase level
+390962007,Plasma alkaline phosphatase level
+390978009,Serum alkaline phosphatase placental enzyme level
+390979001,Serum alkaline phosphatase electrophoresis
+390980003,Serum alkaline phosphatase intestinal enzyme level
+398771000000109,[D]Abnormal liver function test NOS
+417631000000108,[D]Abnormal liver function test NOS
+442466008,Serum bilirubin borderline high
+45896001,Aspartate aminotransferase measurement
+499651000000105,[D]Alkaline phosphatase raised
+501281000000109,[D]Abnormal liver function test
+51106007,Leukocyte alkaline phosphatase score
+555831000000102,Liver function tests NOS
+575461000000107,Serum bilirubin NOS
+575471000000100,Serum alkaline phosphatase NOS
+69100002,"Alkaline phosphatase, heat stable measurement"
+69480007,Gamma glutamyl transferase measurement
+75266008,Germ cell alkaline phosphatase measurement
+754571000000102,Direct/total bilirubin ratio measurement
+754911000000103,Bilirubin direct measurement
+757871000000109,Bilirubin level
+790541000000108,Aspartate transaminase/alanine transaminase ratio measurement
+8244002,Alkaline phosphatase isoenzymes measurement
+830421000000108,Measurement of gamma-glutamyl transferase activity
+863927004,Liver function test increased
+863931005,Direct bilirubin increased
+88810008,Alkaline phosphatase measurement
+889391000000100,Measurement of alanine transaminase activity
+889401000000102,Measurement of alkaline phosphatase activity
+889411000000100,Measurement of alkaline phosphatase bone isoenzyme activity
+889441000000104,Measurement of aspartate transaminase activity
+993651000000105,Fluid sample total protein
+997531000000108,Liver function test
+997561000000103,Plasma total bilirubin level
+997591000000109,Serum total bilirubin level
+997611000000101,Total alkaline phosphatase level
+997621000000107,Plasma alkaline phosphatase bile isoenzyme level
+997641000000100,Plasma alkaline phosphatase liver isoenzyme level
+997651000000102,Serum alkaline phosphatase bile isoenzyme level
+999691000000104,Serum bilirubin level
