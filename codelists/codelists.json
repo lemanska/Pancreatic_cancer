@@ -3,8 +3,8 @@
     "opensafely-chemotherapy-or-radiotherapy.csv": {
       "id": "opensafely/chemotherapy-or-radiotherapy/2020-04-15",
       "url": "https://codelists.opensafely.org/codelist/opensafely/chemotherapy-or-radiotherapy/2020-04-15/",
-      "downloaded_at": "2021-10-28 21:16:09.066655Z",
-      "sha": "cd33b4059bb1f9afcf4d04ff46bf72f088548750"
+      "downloaded_at": "2021-12-15 16:13:15.990011Z",
+      "sha": "41cd7183aee6e1932c4f9b09e8e93f3c7741d4e3"
     },
     "opensafely-ethnicity.csv": {
       "id": "opensafely/ethnicity/2020-04-27",
@@ -21,8 +21,50 @@
     "user-agleman-pancreatic_cancer_snomed.csv": {
       "id": "user/agleman/pancreatic_cancer_snomed/11566403",
       "url": "https://codelists.opensafely.org/codelist/user/agleman/pancreatic_cancer_snomed/11566403/",
-      "downloaded_at": "2021-11-03 14:06:29.850687Z",
+      "downloaded_at": "2021-12-02 16:11:31.508295Z",
       "sha": "68a1b0eb6896e6d6bb94fd912a90bc11e8797b0c"
+    },
+    "opensafely-diabetes.csv": {
+      "id": "opensafely/diabetes/2020-04-15",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/diabetes/2020-04-15/",
+      "downloaded_at": "2021-12-15 16:13:16.959262Z",
+      "sha": "f2781f0c9a0617b30996d681a798eedd152a09af"
+    },
+    "user-agleman-liver_function_tests.csv": {
+      "id": "user/agleman/liver_function_tests/55f07be1",
+      "url": "https://codelists.opensafely.org/codelist/user/agleman/liver_function_tests/55f07be1/",
+      "downloaded_at": "2021-12-03 17:58:01.878737Z",
+      "sha": "ba23c40816b5aa523e7321ef66b8aed047c6d581"
+    },
+    "user-agleman-jaundice.csv": {
+      "id": "user/agleman/jaundice/655a4816",
+      "url": "https://codelists.opensafely.org/codelist/user/agleman/jaundice/655a4816/",
+      "downloaded_at": "2021-12-15 16:13:17.459545Z",
+      "sha": "8ae10a30d2a063efed096be1c8436291c6c9743b"
+    },
+    "user-agleman-ca_19_9.csv": {
+      "id": "user/agleman/ca_19_9/51b054cd",
+      "url": "https://codelists.opensafely.org/codelist/user/agleman/ca_19_9/51b054cd/",
+      "downloaded_at": "2021-12-15 18:22:35.024341Z",
+      "sha": "ca0d80efe6e280cc0dfb329b0aed7c7b030e93bd"
+    },
+    "user-agleman-cea.csv": {
+      "id": "user/agleman/cea/680d080c",
+      "url": "https://codelists.opensafely.org/codelist/user/agleman/cea/680d080c/",
+      "downloaded_at": "2021-12-15 16:38:27.034289Z",
+      "sha": "dc0eccfe2be8b8214c7b8bfdb9665134af3a6948"
+    },
+    "user-agleman-pancreatic-enzyme-replacement-therapy.csv": {
+      "id": "user/agleman/pancreatic-enzyme-replacement-therapy/1cdeae6d",
+      "url": "https://codelists.opensafely.org/codelist/user/agleman/pancreatic-enzyme-replacement-therapy/1cdeae6d/",
+      "downloaded_at": "2021-12-15 18:10:29.659835Z",
+      "sha": "14af44c36130cc9be3f9f7a52f26a663d63b1aa6"
+    },
+    "user-agleman-pancreatic-cancer-icd10.csv": {
+      "id": "user/agleman/pancreatic-cancer-icd10/6abfc802",
+      "url": "https://codelists.opensafely.org/codelist/user/agleman/pancreatic-cancer-icd10/6abfc802/",
+      "downloaded_at": "2021-12-15 21:17:03.780207Z",
+      "sha": "bf5f5c19c16ae8f02efd4915982e4b5910d4bbaf"
     }
   }
 }
