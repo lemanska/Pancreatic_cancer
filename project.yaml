@@ -10,3 +10,10 @@ actions:
     outputs:
       highly_sensitive:
         cohort: output/input_main.csv
+
+generate_study_population:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition --index-date-range "2021-01-01 to today by month" --skip-existing --output-dir=output/measures --output-format=csv.gz
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/input_*.csv.gz
+
