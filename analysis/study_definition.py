@@ -63,8 +63,7 @@ measures = [
         denominator="population",
         group_by="population"
     ),
-    ###this measure by population in the dummy variable gives 0.1 incidence per month - will it work ok 
-    #on the real data? 
+    ###denominator is population? Total? should it be number of registered at that time?
     Measure(
         id="pa_ca_by_region",
         numerator="pa_ca",

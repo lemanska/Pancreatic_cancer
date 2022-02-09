@@ -5,6 +5,12 @@ expectations:
 
 actions:
 
+  generate_denominator:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_denominator
+    outputs:
+      highly_sensitive:
+        cohort: output/input_denominator.csv
+
   generate_main:
     run: cohortextractor:latest generate_cohort --study-definition study_definition_main
     outputs:
@@ -16,17 +22,13 @@ actions:
     needs: [generate_main]
     outputs:
       moderately_sensitive:
-        cohort: output/age_plot1.png
-
-  plot_paca:
-    run: r:latest analysis/table1.R
-    needs: [generate_main]
-    outputs:
-      moderately_sensitive:
-        figure: output/paca_time.png
+        age_plot1: output/age_plot1.png
+        paca_count_plot: output/paca_no.png
+        #paca_rate: output/paca_rate.png
+        paca_count_table: output/paca_counts_pm.csv
 
   generate_study_population:
-    run: cohortextractor:latest generate_cohort --study-definition study_definition --index-date-range "2021-01-01 to today by month" --skip-existing --output-dir=output/measures --output-format=csv.gz
+    run: cohortextractor:latest generate_cohort --study-definition study_definition --index-date-range "2015-01-01 to today by month" --skip-existing --output-dir=output/measures --output-format=csv.gz
     outputs:
       highly_sensitive:
         cohort: output/measures/input_*.csv.gz
