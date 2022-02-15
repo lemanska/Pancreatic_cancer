@@ -211,13 +211,13 @@ study = StudyDefinition(
     diabetes=patients.with_these_clinical_events(
         diabetes_codes,
         returning="binary_flag",
-        # does this give me a date of diagnosis 
+        # does this give me a date of diagnosis
         include_date_of_match=True,
         include_month=True,
         include_day=True,
         return_expectations={"incidence": 0.30},
     ),
-    # Diagnostic tests prior to diagnosis 
+    # Diagnostic tests prior to diagnosis
     liver_funct=patients.with_these_clinical_events(
         liver_funct_codes,
         between=["ca_date - 6 months", "ca_date"],
