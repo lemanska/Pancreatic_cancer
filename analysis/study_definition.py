@@ -155,12 +155,20 @@ study = StudyDefinition(
             "incidence": 0.1,
         },
     ),
-    # Will this work? I need BMI the closst to PaCa diagnosis, but not all will have this
-    bmi=patients.most_recent_bmi(
-        between=["index_date - 2 years", "index_date + 1 years"],
+    # Will this (I mean ca_date instead of index_date) work? I need BMI (and other variables) the closst to PaCa diagnosis, 
+    # but not all people will have this (ca_date). 
+    bmi_before=patients.most_recent_bmi(
+        between=["index_date - 1 years", "index_date"],
         minimum_age_at_measurement=16,
-        include_measurement_date=True,
-        date_format="YYYY-MM-DD",
+        return_expectations={
+            "date": {"earliest": "2013-01-01", "latest": "today"},
+            "float": {"distribution": "normal", "mean": 25, "stddev": 8},
+            "incidence": 0.1
+        }
+    ),
+        bmi_after=patients.most_recent_bmi(
+        between=["index_date", "index_date + 1 years"],
+        minimum_age_at_measurement=16,
         return_expectations={
             "date": {"earliest": "2013-01-01", "latest": "today"},
             "float": {"distribution": "normal", "mean": 25, "stddev": 8},
@@ -168,7 +176,7 @@ study = StudyDefinition(
         }
     ),
     bmi_cat=patients.categorised_as({
-        "No data": "DEFAULT",  
+        "No data": "DEFAULT",
         "Underweight (<18.5)": """ bmi_value >= 5 AND bmi_value < 18.5""",
         "Normal (18.5-24.9)": """ bmi_value >= 18.5 AND bmi_value < 25""",
         "Overweight (25-29.9)": """ bmi_value >= 25 AND bmi_value < 30""",
@@ -179,7 +187,7 @@ study = StudyDefinition(
         bmi_value=patients.most_recent_bmi(
             between=["index_date - 2 years", "index_date + 1 years"],
             minimum_age_at_measurement=16
-        ),
+        ),#I am keeping this one as a broader range to be more inclusive as I would like to use this in measures
         return_expectations={
             "rate": "universal",
             "category": {
@@ -195,10 +203,20 @@ study = StudyDefinition(
             }
         }
     ),
-    latest_hba1c=patients.with_these_clinical_events(
+    hba1c_before=patients.with_these_clinical_events(
         hba1c_new_codes,
         find_last_match_in_period=True,
-        between=["index_date - 2 years", "index_date + 1 years"],
+        between=["index_date - 1 years", "index_date"],
+        returning="numeric_value",
+        return_expectations={
+            "float": {"distribution": "normal", "mean": 40.0, "stddev": 20},
+            "incidence": 0.95,
+        }
+    ),
+    hba1c_after=patients.with_these_clinical_events(
+        hba1c_new_codes,
+        find_last_match_in_period=True,
+        between=["index_date", "index_date + 1 years"],
         returning="numeric_value",
         include_date_of_match=True,
         include_month=True,
@@ -211,7 +229,6 @@ study = StudyDefinition(
     diabetes=patients.with_these_clinical_events(
         diabetes_codes,
         returning="binary_flag",
-        # does this give me a date of diagnosis
         include_date_of_match=True,
         include_month=True,
         include_day=True,
@@ -221,21 +238,18 @@ study = StudyDefinition(
     liver_funct=patients.with_these_clinical_events(
         liver_funct_codes,
         between=["ca_date - 6 months", "ca_date"],
-        find_last_match_in_period=True,
         returning="binary_flag",
         return_expectations={"incidence": 0.50},
     ),
     ca19_9=patients.with_these_clinical_events(
         ca19_9,
         between=["ca_date - 6 months", "ca_date"],
-        find_last_match_in_period=True,
         returning="binary_flag",
         return_expectations={"incidence": 0.20},
     ),
     CEAntigen=patients.with_these_clinical_events(
         CEA,
         between=["ca_date - 6 months", "ca_date"],
-        find_last_match_in_period=True,
         returning="binary_flag",
         return_expectations={"incidence": 0.10},
     ),
@@ -243,7 +257,6 @@ study = StudyDefinition(
     jaundice=patients.with_these_clinical_events(
         jaundice,
         between=["ca_date - 6 months", "ca_date"],
-        find_last_match_in_period=True,
         returning="binary_flag",
         return_expectations={"incidence": 0.60},
     ),
@@ -252,7 +265,6 @@ study = StudyDefinition(
         cancer_referral_codes,
         # on_or_before="ca_date",
         between=["ca_date - 6 months", "ca_date"],
-        find_last_match_in_period=True,
         returning="binary_flag",
         # returning="date", # can I have a count? 
         # date_format="YYYY-MM-DD",

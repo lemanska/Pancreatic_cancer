@@ -8,4 +8,6 @@ metadata/*
 venv/
 .DS_Store
 .Rproj.user
-.Rhistory 
+*.Rproj
+.Rhistory
+/r_scripts/*

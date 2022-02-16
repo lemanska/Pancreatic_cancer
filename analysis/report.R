@@ -1,3 +1,5 @@
+#install.packages("Rcpp")
+library(Rcpp)
 library(tidyverse)
 library(here)
 library(ggplot2)
@@ -68,8 +70,9 @@ write.table(measure_paca_region, here::here("output", "paca_rate_region.csv"),
 
 measure_paca_IMD <- read_csv(here::here("output","measures",
                                            "measure_pa_ca_by_IMD_rate.csv"))
-measure_paca_IMD$date <- as.Date(measure_paca_IMD$date,format = "%Y-%m-%d") 
-
+measure_paca_IMD$date <- as.Date(measure_paca_IMD$date,format = "%Y-%m-%d")
+### "0" is missing data?
+measure_paca_IMD <- measure_paca_IMD[-which(measure_paca_IMD$imd_cat==0),]
 measure_paca_IMD$imd_cat <- as.character(measure_paca_IMD$imd_cat)
 
 paca_rate_IMD <- ggplot(data = measure_paca_IMD,
@@ -90,4 +93,5 @@ ggsave(
 
 write.table(measure_paca_IMD, here::here("output", "paca_rate_IMD.csv"),
             col.names= c("imd_cat","count", "population", "rate", "date"),sep = ",",row.names = F)
+
 
