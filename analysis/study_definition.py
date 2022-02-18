@@ -155,8 +155,8 @@ study = StudyDefinition(
             "incidence": 0.1,
         },
     ),
-    # Will this (I mean ca_date instead of index_date) work? I need BMI (and other variables) the closst to PaCa diagnosis, 
-    # but not all people will have this (ca_date). 
+    # Will this (I mean ca_date instead of index_date) work? I need BMI (and other variables) the closst to PaCa diagnosis,
+    # but not all people will have this (ca_date).
     bmi_before=patients.most_recent_bmi(
         between=["index_date - 1 years", "index_date"],
         minimum_age_at_measurement=16,
@@ -166,7 +166,7 @@ study = StudyDefinition(
             "incidence": 0.1
         }
     ),
-        bmi_after=patients.most_recent_bmi(
+    bmi_after=patients.most_recent_bmi(
         between=["index_date", "index_date + 1 years"],
         minimum_age_at_measurement=16,
         return_expectations={
@@ -217,14 +217,11 @@ study = StudyDefinition(
         hba1c_new_codes,
         find_last_match_in_period=True,
         between=["index_date", "index_date + 1 years"],
-        returning="numeric_value",
+        returning="binary_flag",
         include_date_of_match=True,
         include_month=True,
         include_day=True,
-        return_expectations={
-            "float": {"distribution": "normal", "mean": 40.0, "stddev": 20},
-            "incidence": 0.95,
-        }
+        return_expectations={"incidence": 0.30},
     ),
     diabetes=patients.with_these_clinical_events(
         diabetes_codes,
