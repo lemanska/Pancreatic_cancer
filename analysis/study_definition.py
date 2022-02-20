@@ -14,35 +14,77 @@ end_date = "today"
 
 study = StudyDefinition(
     default_expectations={
-        "date": {"earliest": start_date, "latest": end_date},
+        "date": {"earliest": "2000-01-01", "latest": "today"},
         "rate": "uniform",
-        "incidence": 0.8,
-    },
-
-    index_date=start_date,
-
+        "incidence": 0.5,
+        },
+    # index_date="", not defined becasue it will be ca_date
     population=patients.satisfying(
-        """
-       (age >=18 AND age <=120) AND
-       (sex = 'M' OR sex = 'F')
-       """
+        """pa_ca AND
+        (age >=18 AND age <= 110)"""
+    ),
+    pa_ca=patients.with_these_clinical_events(
+        pan_cancer_codes,
+        returning="binary_flag",
+        return_expectations={"incidence": 1.0},
+    ),
+    ca_date=patients.with_these_clinical_events(
+        pan_cancer_codes,
+        find_first_match_in_period=True,
+        returning="date",
+        date_format="YYYY-MM-DD",
+        return_expectations={"incidence": 1.0},
     ),
     age=patients.age_as_of(
-        "index_date",
+        "ca_date",
         return_expectations={
-            "rate": "universal",
+            "rate": "exponential_increase",
             "int": {"distribution": "population_ages"},
         },
     ),
+    #demographics
     sex=patients.sex(
         return_expectations={
             "rate": "universal",
-            "category": {"ratios": {"M": 0.5, "F": 0.5}},
+            "category": {"ratios": {"M": 0.49, "F": 0.51}},
         }
     ),
-    #demographics
+    ethnicity=patients.categorised_as(
+        {
+            "Missing": "DEFAULT",
+            "White": """ ethnicity_code=1 """,
+            "Mixed": """ ethnicity_code=2 """,
+            "South Asian": """ ethnicity_code=3 """,
+            "Black": """ ethnicity_code=4 """,
+            "Other": """ ethnicity_code=5 """,
+        },
+        return_expectations={
+            "rate": "universal",
+            "category": {
+                "ratios": {
+                    "Missing": 0.4,
+                    "White": 0.2,
+                    "Mixed": 0.1,
+                    "South Asian": 0.1,
+                    "Black": 0.1,
+                    "Other": 0.1,
+                }
+            },
+        },
+
+        ethnicity_code=patients.with_these_clinical_events(
+            ethnicity_codes,
+            returning="category",
+            find_last_match_in_period=True,
+            on_or_before="ca_date",
+            return_expectations={
+            "category": {"ratios": {"1": 0.4, "2": 0.4, "3": 0.2, "4":0.2,"5": 0.2}},
+            "incidence": 0.75,
+            },
+        ),
+    ),
     msoa=patients.registered_practice_as_of(
-        "index_date",
+        "ca_date",
         returning="msoa_code",
         return_expectations={
             "rate": "universal",
@@ -62,7 +104,7 @@ study = StudyDefinition(
         },
     ),
     stp=patients.registered_practice_as_of(
-        "index_date",
+        "ca_date",
         returning="stp_code",
         return_expectations={
             "rate": "universal",
@@ -72,7 +114,7 @@ study = StudyDefinition(
         },
     ),
     imd_Q=patients.address_as_of(
-        "index_date",
+        "ca_date",
         returning="index_of_multiple_deprivation",
         round_to_nearest=100,
         return_expectations={
@@ -90,7 +132,7 @@ study = StudyDefinition(
             "5": """index_of_multiple_deprivation >= 32844*4/5 AND index_of_multiple_deprivation < 32844""",
         },
         index_of_multiple_deprivation=patients.address_as_of(
-            "index_date",
+            "ca_date",
             returning="index_of_multiple_deprivation",
             round_to_nearest=100,
         ),
@@ -109,7 +151,7 @@ study = StudyDefinition(
         },
     ),
     region=patients.registered_practice_as_of(
-        "index_date",
+        "ca_date",
         returning="nuts1_region_name",
         return_expectations={
             "rate": "universal",
@@ -127,38 +169,8 @@ study = StudyDefinition(
             },
         },
     ),
-    # pancreawtic cancer variables
-    pa_ca=patients.with_these_clinical_events(
-        pan_cancer_codes,
-        between=["index_date", "last_day_of_month(index_date)"],
-        find_first_match_in_period=True,
-        include_date_of_match=True,
-        include_month=True,
-        include_day=True,
-        returning="binary_flag",
-        return_expectations={"incidence": 0.1},
-    ),
-    ca_date=patients.with_these_clinical_events(
-        pan_cancer_codes,
-        between=["index_date", "last_day_of_month(index_date)"],
-        find_first_match_in_period=True,
-        returning="date",
-        date_format="YYYY-MM-DD",
-        return_expectations={"incidence": 0.1},
-    ),
-    age_at_paca=patients.age_as_of(
-        "ca_date",
-        return_expectations={
-            "rate": "exponential_increase",
-            "int": {"distribution": "population_ages"},
-            "float": {"distribution": "normal", "mean": 60, "stddev": 10},
-            "incidence": 0.1,
-        },
-    ),
-    # Will this (I mean ca_date instead of index_date) work? I need BMI (and other variables) the closst to PaCa diagnosis, 
-    # but not all people will have this (ca_date). 
     bmi_before=patients.most_recent_bmi(
-        between=["index_date - 1 years", "index_date"],
+        between=["ca_date - 1 years", "ca_date"],
         minimum_age_at_measurement=16,
         return_expectations={
             "date": {"earliest": "2013-01-01", "latest": "today"},
@@ -166,8 +178,8 @@ study = StudyDefinition(
             "incidence": 0.1
         }
     ),
-        bmi_after=patients.most_recent_bmi(
-        between=["index_date", "index_date + 1 years"],
+    bmi_after=patients.most_recent_bmi(
+        between=["ca_date", "ca_date + 1 years"],
         minimum_age_at_measurement=16,
         return_expectations={
             "date": {"earliest": "2013-01-01", "latest": "today"},
@@ -185,7 +197,7 @@ study = StudyDefinition(
         "Obese III (40+)": """ bmi_value >= 40 AND bmi_value < 100"""
     },
         bmi_value=patients.most_recent_bmi(
-            between=["index_date - 2 years", "index_date + 1 years"],
+            between=["ca_date - 2 years", "ca_date + 1 years"],
             minimum_age_at_measurement=16
         ),#I am keeping this one as a broader range to be more inclusive as I would like to use this in measures
         return_expectations={
@@ -206,7 +218,7 @@ study = StudyDefinition(
     hba1c_before=patients.with_these_clinical_events(
         hba1c_new_codes,
         find_last_match_in_period=True,
-        between=["index_date - 1 years", "index_date"],
+        between=["ca_date - 1 years", "ca_date"],
         returning="numeric_value",
         return_expectations={
             "float": {"distribution": "normal", "mean": 40.0, "stddev": 20},
@@ -216,15 +228,12 @@ study = StudyDefinition(
     hba1c_after=patients.with_these_clinical_events(
         hba1c_new_codes,
         find_last_match_in_period=True,
-        between=["index_date", "index_date + 1 years"],
-        returning="numeric_value",
+        between=["ca_date", "ca_date + 1 years"],
+        returning="binary_flag",
         include_date_of_match=True,
         include_month=True,
         include_day=True,
-        return_expectations={
-            "float": {"distribution": "normal", "mean": 40.0, "stddev": 20},
-            "incidence": 0.95,
-        }
+        return_expectations={"incidence": 0.30},
     ),
     diabetes=patients.with_these_clinical_events(
         diabetes_codes,
@@ -396,26 +405,3 @@ study = StudyDefinition(
         },
     ),
 )
-
-measures = [
-    Measure(
-        id="pa_ca_diagnosis_rate",
-        numerator="pa_ca",
-        denominator="population",
-        group_by="population",
-    ),
-    Measure(
-        id="pa_ca_by_region_rate",
-        numerator="pa_ca",
-        denominator="population",
-        group_by="region",
-        small_number_suppression=True,
-    ),
-        Measure(
-        id="pa_ca_by_IMD_rate",
-        numerator="pa_ca",
-        denominator="population",
-        group_by="imd_cat",
-        small_number_suppression=True,
-    ),
-]
