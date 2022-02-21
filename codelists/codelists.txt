@@ -1,7 +1,7 @@
 opensafely/chemotherapy-or-radiotherapy/2020-04-15
 opensafely/ethnicity/2020-04-27
 user/agleman/cancer_referrals_pancreatic_cancer_snomed/2fcb5724
-user/agleman/pancreatic_cancer_snomed/11566403
+user/agleman/pancreatic_cancer_snomed/6b15044e
 opensafely/diabetes/2020-04-15
 user/agleman/liver_function_tests/55f07be1
 user/agleman/jaundice/655a4816
