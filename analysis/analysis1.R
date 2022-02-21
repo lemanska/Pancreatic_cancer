@@ -19,7 +19,6 @@ redactor <- function(n, threshold=6,e_overwrite=NA_integer_){
   n_redacted <- if_else(redact, e_overwrite, n)
 }
 
-
 ###
 #download and process the main datafile
 ###
