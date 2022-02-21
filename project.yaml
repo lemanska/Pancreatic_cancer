@@ -43,7 +43,7 @@ actions:
       ]
     outputs:
       moderately_sensitive:
-        Fig1: output/paca_time.png
+        Fig1: output/paca_time210222.png
   #       Tab1: output/paca_rate.csv
   #       Fig2: output/paca_rate_region.png
   #       Tab2: output/paca_rate_region.csv
