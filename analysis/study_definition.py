@@ -25,12 +25,18 @@ study = StudyDefinition(
     ),
     pa_ca=patients.with_these_clinical_events(
         pan_cancer_codes,
-        returning="binary_flag",
+        on_or_after="1900-01-01",
+        find_last_match_in_period=True,
+        include_date_of_match=True,
+        include_month=True,
+        include_day=True,
+        returning="binary_flag",# later could do it as cat for the type of pa ca
         return_expectations={"incidence": 1.0},
     ),
     ca_date=patients.with_these_clinical_events(
         pan_cancer_codes,
-        find_first_match_in_period=True,
+        on_or_after="1900-01-01",
+        find_last_match_in_period=True,
         returning="date",
         date_format="YYYY-MM-DD",
         return_expectations={"incidence": 1.0},
