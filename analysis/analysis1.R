@@ -17,7 +17,6 @@ paca_time <- ggplot(data = X,
   stat_summary(fun = sum, geom = "line") 
 
 ggsave(
-  plot= paca_time,
+  plot= paca_time, dpi=800,width = 20,height = 10, units = "cm",
   filename="paca_time210222.png", path=here::here("output"),
 )
-

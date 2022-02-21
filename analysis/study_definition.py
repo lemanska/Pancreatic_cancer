@@ -26,7 +26,7 @@ study = StudyDefinition(
     pa_ca=patients.with_these_clinical_events(
         pan_cancer_codes,
         on_or_after="1900-01-01",
-        find_last_match_in_period=True,
+        find_first_match_in_period=True,
         include_date_of_match=True,
         include_month=True,
         include_day=True,
