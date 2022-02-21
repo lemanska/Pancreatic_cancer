@@ -36,7 +36,7 @@ study = StudyDefinition(
     ca_date=patients.with_these_clinical_events(
         pan_cancer_codes,
         on_or_after="1900-01-01",
-        find_last_match_in_period=True,
+        find_first_match_in_period=True,
         returning="date",
         date_format="YYYY-MM-DD",
         return_expectations={"incidence": 1.0},
