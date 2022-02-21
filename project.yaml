@@ -1,7 +1,7 @@
 version: '3.0'
 
 expectations:
-  population_size: 1000
+  population_size: 10000
 
 actions:
 
@@ -44,8 +44,6 @@ actions:
     outputs:
       moderately_sensitive:
         Fig1: output/paca_time210222.png
-  #       Tab1: output/paca_rate.csv
-  #       Fig2: output/paca_rate_region.png
-  #       Tab2: output/paca_rate_region.csv
-  #       Fig3: output/paca_rate_IMD.png
-  #       Tab3: output/paca_rate_IMD.csv
+        Tab1: output/paca_counts.csv
+        Fig2: output/paca_time_table.png
+        Fig3: output/paca_time_table_year.png
