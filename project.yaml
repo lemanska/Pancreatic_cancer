@@ -48,7 +48,7 @@ actions:
         Fig3: output/paca_time_table_year.png
 
   describe_rates:
-    run: r:latest analysis/analysis1.R
+    run: r:latest analysis/analysis_rates_using_denominator.R
     needs: 
       [
         generate_study_population,
