@@ -11,28 +11,28 @@ actions:
       highly_sensitive:
         cohort: output/input.csv
 
-  generate_denominator_1:    
-    run: cohortextractor:latest generate_cohort --study-definition study_definition_denominator --index-date-range "2015-01-01 to 2019-01-01 by month" --skip-existing --output-dir=output --output-format=feather
-    outputs:      
-      highly_sensitive:
-        cohort: output/measures/input*.feather
+  # generate_denominator_1:    
+  #   run: cohortextractor:latest generate_cohort --study-definition study_definition_denominator --index-date-range "2015-01-01 to 2019-01-01 by month" --skip-existing --output-dir=output --output-format=feather
+  #   outputs:      
+  #     highly_sensitive:
+  #       cohort: output/measures/input*.feather
   
-  generate_denominator_2:    
-    run: cohortextractor:latest generate_cohort --study-definition study_definition_denominator --index-date-range "2019-02-01 to today by month" --skip-existing --output-dir=output --output-format=feather
-    outputs:      
-      highly_sensitive:
-        cohort: output/measures/inpu*.feather
+  # generate_denominator_2:    
+  #   run: cohortextractor:latest generate_cohort --study-definition study_definition_denominator --index-date-range "2019-02-01 to today by month" --skip-existing --output-dir=output --output-format=feather
+  #   outputs:      
+  #     highly_sensitive:
+  #       cohort: output/measures/inpu*.feather
 
-  generate_measures:
-    run: cohortextractor:latest generate_measures --study-definition study_definition_denominator --skip-existing --output-dir=output/measures
-    needs: 
-      [
-        generate_denominator_1,
-        generate_denominator_2,
-      ]
-    outputs:
-      moderately_sensitive:
-        measure_csv: output/measures/measure*_rate.csv
+  # generate_measures:
+  #   run: cohortextractor:latest generate_measures --study-definition study_definition_denominator --skip-existing --output-dir=output/measures
+  #   needs: 
+  #     [
+  #       generate_denominator_1,
+  #       generate_denominator_2,
+  #     ]
+  #   outputs:
+  #     moderately_sensitive:
+  #       measure_csv: output/measures/measure*_rate.csv
   
   describe:
     run: r:latest analysis/analysis1.R
