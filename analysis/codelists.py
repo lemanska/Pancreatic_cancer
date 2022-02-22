@@ -56,10 +56,11 @@ chemotherapy_or_radiotherapy_codes = codelist_from_csv(
 )
 
 pan_cancer_codes = codelist_from_csv(
-    "codelists/user-agleman-cancer_referrals_pancreatic_cancer_snomed.csv",
+    "codelists/user-agleman-pancreatic_cancer_snomed.csv",
     system="snomed",
     column="code",
 )
+
 diabetes_codes = codelist_from_csv(
     "codelists/opensafely-diabetes.csv", system="ctv3", column="CTV3ID"
 )

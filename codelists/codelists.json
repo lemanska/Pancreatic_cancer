@@ -19,10 +19,10 @@
       "sha": "cf5290c404f4a8ca9dd09b3eeb4e12dd083b584b"
     },
     "user-agleman-pancreatic_cancer_snomed.csv": {
-      "id": "user/agleman/pancreatic_cancer_snomed/6b15044e",
-      "url": "https://codelists.opensafely.org/codelist/user/agleman/pancreatic_cancer_snomed/6b15044e/",
-      "downloaded_at": "2022-02-21 23:40:30.715485Z",
-      "sha": "0fde8a803375330b50a571fce19558d70faa1bc3"
+      "id": "user/agleman/pancreatic_cancer_snomed/11566403",
+      "url": "https://codelists.opensafely.org/codelist/user/agleman/pancreatic_cancer_snomed/11566403/",
+      "downloaded_at": "2022-02-22 11:00:10.871115Z",
+      "sha": "68a1b0eb6896e6d6bb94fd912a90bc11e8797b0c"
     },
     "opensafely-diabetes.csv": {
       "id": "opensafely/diabetes/2020-04-15",
