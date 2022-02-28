@@ -2,13 +2,13 @@
 # project: Project #27: The effect of COVID-19 on pancreatic cancer diagnosis and care.
 # author: Agz Leman
 # 22 Feb 2022
-# Plots monthly counts, analysis_rates.R has been created to plot rates 
+# Plots monthly rates 
+# Generates output table 
 ###
 
 ## library
 library(tidyverse)
 library(here)
-
 ## Redactor code (W.Hulme)
 redactor <- function(n, threshold=6,e_overwrite=NA_integer_){
   # given a vector of frequencies, this returns a boolean vector that is TRUE if
@@ -28,80 +28,80 @@ redactor <- function(n, threshold=6,e_overwrite=NA_integer_){
 }
 
 ###
-# download and process the main datafile
+#download and prep the data
 ###
+
+Denominator <- read_csv(here::here("output", "measures", "measure_registered_rate.csv"))
+
 X <- read_csv(here::here("output", "input.csv"))
 X$pa_ca_date <- as.Date(X$pa_ca_date,format = "%Y-%m-%d") 
 X <- X[which(X$pa_ca_date>="2015-01-01"),]
 X$Month <- as.Date(cut(X$pa_ca_date, breaks = "month"))
 
 ###
-# plot 1, summary counts of pa_ca
+# plot monthly rates longitudinal  
 ###
 
-paca_time <- ggplot(data = X,
-                          aes(Month, pa_ca)) +
-  stat_summary(fun.y = sum, geom = "line") 
-
-ggsave(
-  plot= paca_time, dpi=800,width = 20,height = 10, units = "cm",
-  filename="paca_time.png", path=here::here("output"),
-)
-
-###
-# generate counts using the summary table 
-###
-paca_counts <- as.data.frame(table(X$Month))#create the table of pa_ca counts by month
-colnames(paca_counts) <- c("date", "Panc_Ca_count")
-# apply small number suppresion 
-paca_counts <- paca_counts %>% mutate_at(vars(Panc_Ca_count),redactor) 
-# prep plot axis
-paca_counts$date <- as.Date(as.character(paca_counts$date,format = "%Y-%m-%d"))
-paca_counts$Month <- as.Date(cut(paca_counts$date, breaks = "month"))
-paca_counts$Year <- as.Date(cut(paca_counts$date, breaks = "year"))
-# plot
-paca_time_table <- ggplot(data = paca_counts,
-                    aes(Month, Panc_Ca_count, color = Year)) +
-  geom_line(color = paca_counts$Year )+
-  geom_point(color = paca_counts$Year )+
-  scale_x_date(date_breaks = "2 month",
-               date_labels = "%Y-%m")+
-  labs(title = "Incident pancreatic cancer: cases", 
-       x = "Time", y = "Pancreatic cancer count")+
-  labs(colour = "Station")+
-  theme_bw()+
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-# save
-ggsave(
-  plot= paca_time_table, dpi=800,width = 20,height = 10, units = "cm",
-  filename="paca_time_table.png", path=here::here("output"),
-)
-
-###
-# plot by year
-###
-# create summary table 
+# monthly counts 
 paca_counts <- as.data.frame(table(X$Month))
 colnames(paca_counts) <- c("date", "Panc_Ca_count")
 # apply small number suppression 
 paca_counts <- paca_counts %>% mutate_at(vars(Panc_Ca_count),redactor) 
+# prep axis 
+paca_counts$date <- as.Date(as.character(paca_counts$date,format = "%Y-%m-%d"))
+paca_counts$Month <- as.Date(cut(paca_counts$date, breaks = "month"))
+paca_counts$Year <- as.Date(cut(paca_counts$date, breaks = "year"))
+# calculate rates of pancreatic cancer per 100,000 registered patients 
+paca_rates <- merge(paca_counts, Denominator[,c("registered", "date")], by = "date")
+paca_rates$rate <- paca_rates$Panc_Ca_count / paca_rates$registered * 100000
+# plot 2015-2022 longitudinal
+paca_time_rates <- ggplot(data = paca_rates,
+                          aes(Month, rate, color = Year)) +
+  geom_line(color = paca_rates$Year )+
+  geom_point(color = paca_rates$Year )+
+  scale_x_date(date_breaks = "2 month",
+               date_labels = "%Y-%m")+
+  labs(title = "Incident pancreatic cancer: rates per 100,000 patients", 
+       x = "Time", y = "Pancreatic cancer rates")+
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+# save
+ggsave(
+  plot= paca_time_rates, dpi=800,width = 20,height = 10, units = "cm",
+  filename="paca_time_rates.png", path=here::here("output"),
+)
+
+###
+#plot rates by year
+###
+
 # prep axis
-paca_counts$date <- as.character(paca_counts$date)
-paca_counts$Month <- as.numeric(substr(paca_counts$date, 6, 7))
-paca_counts$Year <- substr(paca_counts$date, 1, 4)
+paca_rates$date <- as.character(paca_rates$date)
+paca_rates$Month <- as.numeric(substr(paca_rates$date, 6, 7))
+paca_rates$Year <- substr(paca_rates$date, 1, 4)
 # plot
-paca_time_table_year <- ggplot(data = paca_counts,
+paca_time_rates_year <- ggplot(data = paca_rates,
                                aes(Month, Panc_Ca_count, color = Year)) +
   geom_line()+
   geom_point()+
   scale_x_continuous(name = "Time", breaks = c(1:12),
                      label = format(ISOdatetime(2000,1:12,1,0,0,0),"%b"))+
-  labs(title = "Incident pancreatic cancer: cases", 
-       colour = "Year", y = "Pancreatic cancer count")+
+  labs(title = "Incident pancreatic cancer: rates per 100,000 patients", 
+       colour = "Year", x = "Time", y = "Pancreatic cancer rates")+
   theme_bw()+
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 # save
 ggsave(
-  plot= paca_time_table_year, dpi=800,width = 20,height = 10, units = "cm",
-  filename="paca_time_table_year.png", path=here::here("output"),
+  plot= paca_time_rates_year, dpi=800,width = 20,height = 10, units = "cm",
+  filename="paca_time_rates_year.png", path=here::here("output"),
 )
+
+###
+#save the output table
+###
+ms <- format(ISOdatetime(2000,1:12,1,0,0,0),"%b")# generate month names 
+paca_rates$Month_name <- ms[paca_rates$Month]
+# save the table 
+write.table(paca_rates, here::here("output", "paca_rates.csv"),
+            col.names= c("date","count", "month", "year", "registered", "rate", "month_name"),
+            sep = ",",row.names = F)

@@ -16,23 +16,26 @@ study = StudyDefinition(
     default_expectations={
         "date": {"earliest": "2015-01-01", "latest": "today"},
         "rate": "uniform",
-        "incidence": 1,
+        "incidence": 0.5,
         },
     index_date="2015-01-01",
-    population=patients.all(),
-    #population=patients.registered_as_of("index_date"),
-    
-    dereg_date=patients.date_deregistered_from_all_supported_practices(
-        on_or_after="index_date",
-        date_format="YYYY-MM",
-        return_expectations={"date": {"earliest": "index_date"},
-        "incidence":0.2
+    population=patients.satisfying(
+        """
+        registered AND
+        (age >=18 AND age <= 110)
+        """
+    ),
+    age=patients.age_as_of(
+        "index_date",
+        return_expectations={
+            "rate": "exponential_increase",
+            "int": {"distribution": "population_ages"},
         },
     ),
     registered=patients.registered_as_of(
         "index_date",
         return_expectations={"incidence":0.95}
-    ),##otherwise this could be looped if not using measures 
+    ),
 )
 
 measures = [

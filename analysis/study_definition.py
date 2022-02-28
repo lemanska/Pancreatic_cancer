@@ -18,7 +18,7 @@ study = StudyDefinition(
         "rate": "uniform",
         "incidence": 0.5,
         },
-    # index_date="", not defined becasue it will be ca_date
+    # index_date="", not defined becasue it will be pa_ca_date
     population=patients.satisfying(
         """pa_ca AND
         (age >=18 AND age <= 110)"""
@@ -30,25 +30,20 @@ study = StudyDefinition(
         include_date_of_match=True,
         include_month=True,
         include_day=True,
-        returning="binary_flag",# later could do it as cat for the type of pa ca
-        return_expectations={"incidence": 1.0},
-    ),
-    ca_date=patients.with_these_clinical_events(
-        pan_cancer_codes,
-        on_or_after="1900-01-01",
-        find_first_match_in_period=True,
-        returning="date",
-        date_format="YYYY-MM-DD",
-        return_expectations={"incidence": 1.0},
+        returning="binary_flag",
+        return_expectations={
+            "date": {"earliest": "2013-01-01", "latest": "today"},
+            "incidence": 1.0
+        }
     ),
     age=patients.age_as_of(
-        "ca_date",
+        "pa_ca_date",
         return_expectations={
             "rate": "exponential_increase",
             "int": {"distribution": "population_ages"},
         },
     ),
-    #demographics
+# demographics
     sex=patients.sex(
         return_expectations={
             "rate": "universal",
@@ -77,12 +72,11 @@ study = StudyDefinition(
                 }
             },
         },
-
         ethnicity_code=patients.with_these_clinical_events(
             ethnicity_codes,
             returning="category",
             find_last_match_in_period=True,
-            on_or_before="ca_date",
+            on_or_before="pa_ca_date",
             return_expectations={
             "category": {"ratios": {"1": 0.4, "2": 0.4, "3": 0.2, "4":0.2,"5": 0.2}},
             "incidence": 0.75,
@@ -90,7 +84,7 @@ study = StudyDefinition(
         ),
     ),
     msoa=patients.registered_practice_as_of(
-        "ca_date",
+        "pa_ca_date",
         returning="msoa_code",
         return_expectations={
             "rate": "universal",
@@ -110,7 +104,7 @@ study = StudyDefinition(
         },
     ),
     stp=patients.registered_practice_as_of(
-        "ca_date",
+        "pa_ca_date",
         returning="stp_code",
         return_expectations={
             "rate": "universal",
@@ -120,7 +114,7 @@ study = StudyDefinition(
         },
     ),
     imd_Q=patients.address_as_of(
-        "ca_date",
+        "pa_ca_date",
         returning="index_of_multiple_deprivation",
         round_to_nearest=100,
         return_expectations={
@@ -138,7 +132,7 @@ study = StudyDefinition(
             "5": """index_of_multiple_deprivation >= 32844*4/5 AND index_of_multiple_deprivation < 32844""",
         },
         index_of_multiple_deprivation=patients.address_as_of(
-            "ca_date",
+            "pa_ca_date",
             returning="index_of_multiple_deprivation",
             round_to_nearest=100,
         ),
@@ -157,7 +151,7 @@ study = StudyDefinition(
         },
     ),
     region=patients.registered_practice_as_of(
-        "ca_date",
+        "pa_ca_date",
         returning="nuts1_region_name",
         return_expectations={
             "rate": "universal",
@@ -176,7 +170,7 @@ study = StudyDefinition(
         },
     ),
     bmi_before=patients.most_recent_bmi(
-        between=["ca_date - 1 years", "ca_date"],
+        between=["pa_ca_date - 1 years", "pa_ca_date"],
         minimum_age_at_measurement=16,
         return_expectations={
             "date": {"earliest": "2013-01-01", "latest": "today"},
@@ -185,7 +179,7 @@ study = StudyDefinition(
         }
     ),
     bmi_after=patients.most_recent_bmi(
-        between=["ca_date", "ca_date + 1 years"],
+        between=["pa_ca_date", "pa_ca_date + 1 years"],
         minimum_age_at_measurement=16,
         return_expectations={
             "date": {"earliest": "2013-01-01", "latest": "today"},
@@ -203,9 +197,9 @@ study = StudyDefinition(
         "Obese III (40+)": """ bmi_value >= 40 AND bmi_value < 100"""
     },
         bmi_value=patients.most_recent_bmi(
-            between=["ca_date - 2 years", "ca_date + 1 years"],
+            between=["pa_ca_date - 2 years", "pa_ca_date + 1 years"],
             minimum_age_at_measurement=16
-        ),#I am keeping this one as a broader range to be more inclusive as I would like to use this in measures
+        ),
         return_expectations={
             "rate": "universal",
             "category": {
@@ -224,7 +218,7 @@ study = StudyDefinition(
     hba1c_before=patients.with_these_clinical_events(
         hba1c_new_codes,
         find_last_match_in_period=True,
-        between=["ca_date - 1 years", "ca_date"],
+        between=["pa_ca_date - 1 years", "pa_ca_date"],
         returning="numeric_value",
         return_expectations={
             "float": {"distribution": "normal", "mean": 40.0, "stddev": 20},
@@ -234,7 +228,7 @@ study = StudyDefinition(
     hba1c_after=patients.with_these_clinical_events(
         hba1c_new_codes,
         find_last_match_in_period=True,
-        between=["ca_date", "ca_date + 1 years"],
+        between=["pa_ca_date", "pa_ca_date + 1 years"],
         returning="binary_flag",
         include_date_of_match=True,
         include_month=True,
@@ -249,88 +243,90 @@ study = StudyDefinition(
         include_day=True,
         return_expectations={"incidence": 0.30},
     ),
-    # Diagnostic tests prior to diagnosis
+# Diagnostic tests prior to diagnosis
     liver_funct=patients.with_these_clinical_events(
         liver_funct_codes,
-        between=["ca_date - 6 months", "ca_date"],
+        between=["pa_ca_date - 6 months", "pa_ca_date"],
         returning="binary_flag",
         return_expectations={"incidence": 0.50},
     ),
     ca19_9=patients.with_these_clinical_events(
         ca19_9,
-        between=["ca_date - 6 months", "ca_date"],
+        between=["pa_ca_date - 6 months", "pa_ca_date"],
         returning="binary_flag",
         return_expectations={"incidence": 0.20},
     ),
     CEAntigen=patients.with_these_clinical_events(
         CEA,
-        between=["ca_date - 6 months", "ca_date"],
+        between=["pa_ca_date - 6 months", "pa_ca_date"],
         returning="binary_flag",
         return_expectations={"incidence": 0.10},
     ),
-    # Symptoms, jaundice example
+# Symptoms, jaundice example
     jaundice=patients.with_these_clinical_events(
         jaundice,
-        between=["ca_date - 6 months", "ca_date"],
+        between=["pa_ca_date - 6 months", "pa_ca_date"],
         returning="binary_flag",
         return_expectations={"incidence": 0.60},
     ),
-    # Referrals from primary care
-    Refer=patients.with_these_clinical_events(
+# Referrals from primary care
+    gp_ca_referral=patients.with_these_clinical_events(
         cancer_referral_codes,
-        # on_or_before="ca_date",
-        between=["ca_date - 6 months", "ca_date"],
+        # on_or_before="pa_ca_date",
+        between=["pa_ca_date - 6 months", "pa_ca_date"],
         returning="binary_flag",
         # returning="date", # can I have a count? 
         # date_format="YYYY-MM-DD",
         return_expectations={"incidence": 0.6},
     ),
-    # treatment in primary care - panc enzymes new prescriptions 
-    enz_repl=patients.with_these_clinical_events(
+# treatment in primary care - panc enzymes new prescriptions 
+    enzyme_replace=patients.with_these_clinical_events(
         enzyme_replace,
-        # on_or_before="ca_date",
-        between=["ca_date - 6 months", "ca_date"],
+        # on_or_before="pa_ca_date",
+        between=["pa_ca_date - 6 months", "pa_ca_date"],
         returning="number_of_matches_in_period",
         return_expectations={
             "int": {"distribution": "normal", "mean": 3, "stddev": 2},
             "incidence": 0.1,
         }
     ),
-    adm_before=patients.admitted_to_hospital(
-        between=["ca_date - 6 months", "ca_date"],
+# secondary care admissions 
+    admitted_before=patients.admitted_to_hospital(
+        between=["pa_ca_date - 6 months", "pa_ca_date"],
         returning="number_of_matches_in_period",
         return_expectations={
             "int": {"distribution": "normal", "mean": 2, "stddev": 1},
             "incidence": 0.4,
         }
     ),
-    adm_after=patients.admitted_to_hospital(
-        between=["ca_date", "ca_date + 6 months", ],
+    admitted_after=patients.admitted_to_hospital(
+        between=["pa_ca_date", "pa_ca_date + 6 months", ],
         returning="number_of_matches_in_period",
         return_expectations={
             "int": {"distribution": "normal", "mean": 3, "stddev": 3},
             "incidence": 0.6,
         }
     ),
-    adm_ca=patients.admitted_to_hospital(
+    admitted_w_ca_before=patients.admitted_to_hospital(
         with_these_diagnoses=pa_ca_icd10,
-        between=["ca_date - 6 months", "ca_date + 6 months", ],
+        between=["pa_ca_date - 6 months", "pa_ca_date", ],
         returning="number_of_matches_in_period",
         return_expectations={
             "int": {"distribution": "normal", "mean": 2, "stddev": 2},
             "incidence": 0.3,
         }
     ),
-    adm_ca_date=patients.admitted_to_hospital(
-        returning="date_admitted",
+    admitted_w_ca_after=patients.admitted_to_hospital(
         with_these_diagnoses=pa_ca_icd10,
-        on_or_after="ca_date",
-        find_first_match_in_period=True,
-        date_format="YYYY-MM-DD",
-        return_expectations={"date": {"earliest": "2015-01-01"}},
+        between=["pa_ca_date", "pa_ca_date + 6 months", ],
+        returning="number_of_matches_in_period",
+        return_expectations={
+            "int": {"distribution": "normal", "mean": 2, "stddev": 2},
+            "incidence": 0.3,
+        }
     ),
     emergency_care_before=patients.attended_emergency_care(
-        between=["ca_date - 6 months", "ca_date"],
+        between=["pa_ca_date - 6 months", "pa_ca_date"],
         returning="number_of_matches_in_period",
         return_expectations={
             "int": {"distribution": "normal", "mean": 2, "stddev": 2},
@@ -338,20 +334,21 @@ study = StudyDefinition(
         }
     ),
     emergency_care_after=patients.attended_emergency_care(
-        between=["ca_date", "ca_date + 6 months"],
+        between=["pa_ca_date", "pa_ca_date + 6 months"],
         returning="number_of_matches_in_period",
         return_expectations={
             "int": {"distribution": "normal", "mean": 2, "stddev": 2},
             "incidence": 0.3,
         }
     ),
-    died=patients.died_from_any_cause(
-        on_or_after="ca_date",
+#mortality
+    died_any=patients.died_from_any_cause(
+        on_or_after="pa_ca_date",
         returning="binary_flag",
         return_expectations={"incidence": 0.80},
     ),
-    died_any=patients.died_from_any_cause(
-        on_or_after="ca_date",
+    died_any_date=patients.died_from_any_cause(
+        on_or_after="pa_ca_date",
         returning="date_of_death",
         date_format="YYYY-MM-DD",
         return_expectations={
@@ -360,15 +357,15 @@ study = StudyDefinition(
             "incidence": 0.80
         },
     ),
-    died_ca=patients.with_these_codes_on_death_certificate(
+    died_paca=patients.with_these_codes_on_death_certificate(
         pa_ca_icd10,
-        on_or_after="ca_date",
+        on_or_after="pa_ca_date",
         match_only_underlying_cause=False,
         return_expectations={"incidence": 0.50},
     ),
-    died_ca_date=patients.with_these_codes_on_death_certificate(
+    died_paca_date=patients.with_these_codes_on_death_certificate(
         pa_ca_icd10,
-        on_or_after="ca_date",
+        on_or_after="pa_ca_date",
         match_only_underlying_cause=False,
         returning="date_of_death",
         date_format="YYYY-MM-DD",
@@ -378,8 +375,8 @@ study = StudyDefinition(
             "incidence": 0.50
         },
     ),
-    gp_count=patients.with_gp_consultations(
-        between=["ca_date - 1 years", "ca_date"],
+    gp_consult_count=patients.with_gp_consultations(
+        between=["pa_ca_date - 1 years", "pa_ca_date"],
         returning="number_of_matches_in_period",
         return_expectations={
             "int": {"distribution": "normal", "mean": 6, "stddev": 3},
@@ -387,7 +384,7 @@ study = StudyDefinition(
         },
     ),
     care_home_type=patients.care_home_status_as_of(
-        "ca_date",
+        "pa_ca_date",
         categorised_as={
             "PC":
             """
