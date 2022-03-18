@@ -262,6 +262,13 @@ study = StudyDefinition(
         returning="binary_flag",
         return_expectations={"incidence": 0.10},
     ),
+    pancreatic_imaging=patients.admitted_to_hospital(
+        with_these_procedures=pancreatic_imaging_OPCS4,
+        between=["pa_ca_date - 6 months", "pa_ca_date"],
+        returning="binary_flag",
+        return_expectations={"incidence": 0.20},
+        find_first_match_in_period=True,
+    ),
 # Symptoms, jaundice example
     jaundice=patients.with_these_clinical_events(
         jaundice,

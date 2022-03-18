@@ -10,3 +10,4 @@ user/agleman/cea/680d080c
 user/agleman/pancreatic-enzyme-replacement-therapy/1cdeae6d
 user/agleman/pancreatic-cancer-icd10/6abfc802
 user/agleman/resection-of-pancreatic-cancer-opcs-4/7eb58e9a
+user/agleman/pancreatic-imaging-opcs-4/65a61b65

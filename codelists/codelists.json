@@ -71,6 +71,12 @@
       "url": "https://codelists.opensafely.org/codelist/user/agleman/resection-of-pancreatic-cancer-opcs-4/7eb58e9a/",
       "downloaded_at": "2022-03-18 13:14:11.071149Z",
       "sha": "39aa544fe8661ff10e96d73b6ce333105b1c042d"
+    },
+    "user-agleman-pancreatic-imaging-opcs-4.csv": {
+      "id": "user/agleman/pancreatic-imaging-opcs-4/65a61b65",
+      "url": "https://codelists.opensafely.org/codelist/user/agleman/pancreatic-imaging-opcs-4/65a61b65/",
+      "downloaded_at": "2022-03-18 14:08:26.854391Z",
+      "sha": "d5a3f475c95e3f6b807c3d2356264821a9f28d7a"
     }
   }
 }
