@@ -1,7 +1,7 @@
 version: '3.0'
 
 expectations:
-  population_size: 10000
+  population_size: 1000
 
 actions:
 
@@ -11,39 +11,87 @@ actions:
       highly_sensitive:
         cohort: output/input.csv
 
-  # generate_denominator_1:    
-  #   run: cohortextractor:latest generate_cohort --study-definition study_definition_denominator --index-date-range "2015-01-01 to 2019-01-01 by month" --skip-existing --output-dir=output --output-format=feather
-  #   outputs:      
-  #     highly_sensitive:
-  #       cohort: output/measures/input*.feather
+  generate_denominator_1:    
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_denominator --index-date-range "2015-01-01 to 2019-01-01 by month" --skip-existing --output-dir=output --output-format=feather
+    outputs:      
+      highly_sensitive:
+        cohort: output/measures/input*.feather
   
-  # generate_denominator_2:    
-  #   run: cohortextractor:latest generate_cohort --study-definition study_definition_denominator --index-date-range "2019-02-01 to today by month" --skip-existing --output-dir=output --output-format=feather
-  #   outputs:      
-  #     highly_sensitive:
-  #       cohort: output/measures/inpu*.feather
+  generate_denominator_2:    
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_denominator --index-date-range "2019-02-01 to today by month" --skip-existing --output-dir=output --output-format=feather
+    outputs:      
+      highly_sensitive:
+        cohort: output/measures/inpu*.feather
 
-  # generate_measures:
-  #   run: cohortextractor:latest generate_measures --study-definition study_definition_denominator --skip-existing --output-dir=output/measures
-  #   needs: 
-  #     [
-  #       generate_denominator_1,
-  #       generate_denominator_2,
-  #     ]
-  #   outputs:
-  #     moderately_sensitive:
-  #       measure_csv: output/measures/measure*_rate.csv
+  generate_measures:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_denominator --skip-existing --output-dir=output/measures
+    needs: 
+      [
+        generate_denominator_1,
+        generate_denominator_2,
+      ]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/measure_registered*_rate.csv
   
-  describe:
+  describe_counts:
     run: r:latest analysis/analysis1.R
     needs: 
       [
         generate_study_population,
-        # generate_measures,
       ]
     outputs:
       moderately_sensitive:
-        Fig1: output/paca_time210222.png
-        Tab1: output/paca_counts.csv
+        Fig1: output/paca_time.png
         Fig2: output/paca_time_table.png
         Fig3: output/paca_time_table_year.png
+
+  describe_rates:
+    run: r:latest analysis/analysis_rates_using_denominator.R
+    needs: 
+      [
+        generate_study_population,
+        generate_measures,
+      ]
+    outputs:
+      moderately_sensitive:
+        Fig1: output/paca_time_rates.png
+        Fig2: output/paca_time_rates_year.png
+        Tab1: output/paca_rates.csv
+
+## =================================================
+# Enzyme replacement study 
+## =================================================
+  generate_enzyme_replace_1:    
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_enzyme_replace --index-date-range "2015-01-01 to 2019-01-01 by month" --skip-existing --output-dir=output --output-format=feather
+    outputs:      
+      highly_sensitive:
+        cohort: output/measures/inp*.feather
+  
+  generate_enzyme_replace_2:    
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_enzyme_replace --index-date-range "2019-02-01 to today by month" --skip-existing --output-dir=output --output-format=feather
+    outputs:      
+      highly_sensitive:
+        cohort: output/measures/in*.feather
+
+  generate_measures_enzymeRx:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_enzyme_replace --skip-existing --output-dir=output/measures
+    needs: 
+      [
+        generate_enzyme_replace_1,
+        generate_enzyme_replace_2,
+      ]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/measure_enzymeRx*_rate.csv
+
+  describe_ERx_rates:
+    run: r:latest analysis/analysis_enzymeRx.R
+    needs: 
+      [
+        generate_measures_enzymeRx,
+      ]
+    outputs:
+      moderately_sensitive:
+        Fig1: output/ERx_number.png
+        Fig2: output/ERx_rates.png

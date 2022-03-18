@@ -84,3 +84,12 @@ pa_ca_icd10 = codelist_from_csv(
 
 # HbA1c
 hba1c_new_codes = codelist(["XaPbt", "Xaeze", "Xaezd"], system="ctv3")
+
+# Pancreatic resection
+pancreatic_resection_OPCS4 = codelist(
+    [
+    "J55", "J55.1", "J55.2", "J55.3", "J55.8", "J55.9",
+    "J56", "J56.1", "J56.2", "J56.3", "J56.4", "J56.8", "J56.9",
+    "J57", "J57.1", "J57.2", "J57.3", "J57.4", "J57.5", "J57.6", "J57.8", "J57.9"
+    ],
+    system="opcs4")
