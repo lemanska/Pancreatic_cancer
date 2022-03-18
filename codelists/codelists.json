@@ -13,10 +13,10 @@
       "sha": "3d2f3998b71863a80b24d60f6f4282e14191ae13"
     },
     "user-agleman-cancer_referrals_pancreatic_cancer_snomed.csv": {
-      "id": "user/agleman/cancer_referrals_pancreatic_cancer_snomed/2fcb5724",
-      "url": "https://codelists.opensafely.org/codelist/user/agleman/cancer_referrals_pancreatic_cancer_snomed/2fcb5724/",
-      "downloaded_at": "2021-11-03 14:06:29.566920Z",
-      "sha": "cf5290c404f4a8ca9dd09b3eeb4e12dd083b584b"
+      "id": "user/agleman/cancer_referrals_pancreatic_cancer_snomed/3a1b76bc",
+      "url": "https://codelists.opensafely.org/codelist/user/agleman/cancer_referrals_pancreatic_cancer_snomed/3a1b76bc/",
+      "downloaded_at": "2022-03-18 13:14:08.586831Z",
+      "sha": "b5c251d629a726dd126f3204a249f75d313e2a0b"
     },
     "user-agleman-pancreatic_cancer_snomed.csv": {
       "id": "user/agleman/pancreatic_cancer_snomed/11566403",
@@ -65,6 +65,12 @@
       "url": "https://codelists.opensafely.org/codelist/user/agleman/pancreatic-cancer-icd10/6abfc802/",
       "downloaded_at": "2021-12-15 21:17:03.780207Z",
       "sha": "bf5f5c19c16ae8f02efd4915982e4b5910d4bbaf"
+    },
+    "user-agleman-resection-of-pancreatic-cancer-opcs-4.csv": {
+      "id": "user/agleman/resection-of-pancreatic-cancer-opcs-4/7eb58e9a",
+      "url": "https://codelists.opensafely.org/codelist/user/agleman/resection-of-pancreatic-cancer-opcs-4/7eb58e9a/",
+      "downloaded_at": "2022-03-18 13:14:11.071149Z",
+      "sha": "39aa544fe8661ff10e96d73b6ce333105b1c042d"
     }
   }
 }

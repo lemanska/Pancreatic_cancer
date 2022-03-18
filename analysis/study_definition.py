@@ -279,16 +279,20 @@ study = StudyDefinition(
         # date_format="YYYY-MM-DD",
         return_expectations={"incidence": 0.6},
     ),
-# treatment in primary care - panc enzymes new prescriptions 
-    enzyme_replace=patients.with_these_clinical_events(
+# treatment
+    enzyme_replace=patients.with_these_medications(
         enzyme_replace,
         # on_or_before="pa_ca_date",
-        between=["pa_ca_date - 6 months", "pa_ca_date"],
-        returning="number_of_matches_in_period",
-        return_expectations={
-            "int": {"distribution": "normal", "mean": 3, "stddev": 2},
-            "incidence": 0.1,
-        }
+        between=["pa_ca_date", "pa_ca_date + 6 months"],
+        returning="binary_flag",
+        return_expectations={"incidence": 0.50},
+    ),
+    pancreatic_resection=patients.admitted_to_hospital(
+        with_these_procedures=pancreatic_resection_OPCS4,
+        on_or_after="pa_ca_date",
+        returning="binary_flag",
+        return_expectations={"incidence": 0.20},
+        find_first_match_in_period=True,
     ),
 # secondary care admissions 
     admitted_before=patients.admitted_to_hospital(
