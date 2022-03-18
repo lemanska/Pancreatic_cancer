@@ -85,6 +85,13 @@ pa_ca_icd10 = codelist_from_csv(
 # HbA1c
 hba1c_new_codes = codelist(["XaPbt", "Xaeze", "Xaezd"], system="ctv3")
 
+# Pancreatic imaging
+pancreatic_imaging_OPCS4 = codelist_from_csv(
+    "codelists/user-agleman-pancreatic-imaging-opcs-4.csv",
+    system="opcs4",
+    column="Code",
+)
+
 # Pancreatic resection
 pancreatic_resection_OPCS4 = codelist_from_csv(
     "codelists/user-agleman-resection-of-pancreatic-cancer-opcs-4.csv",
