@@ -64,7 +64,12 @@ paca_time_rates <- ggplot(data = paca_rates,
   labs(title = "Incident pancreatic cancer: rates per 100,000 patients", 
        x = "Time", y = "Pancreatic cancer rates")+
   theme_bw()+
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  geom_vline(xintercept =  as.numeric(as.Date("2020-03-26",format = "%Y-%m-%d")), 
+             linetype="solid", color = "blue", size=1)+
+  annotate("text", x = (as.Date("2020-03-26",format = "%Y-%m-%d")+150), 
+           y = max(paca_rates$rate,na.rm = TRUE)-0.1*max(paca_rates$rate,na.rm = TRUE), 
+           label = "lockdown \n start", color = "blue")
 # save
 ggsave(
   plot= paca_time_rates, dpi=800,width = 20,height = 10, units = "cm",

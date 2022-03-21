@@ -41,7 +41,9 @@ X$Month <- as.Date(cut(X$pa_ca_date, breaks = "month"))
 
 paca_time <- ggplot(data = X,
                           aes(Month, pa_ca)) +
-  stat_summary(fun.y = sum, geom = "line") 
+  stat_summary(fun.y = sum, geom = "line")+
+    geom_vline(xintercept =  as.numeric(as.Date("2020-03-26",format = "%Y-%m-%d")), 
+               linetype="solid", color = "blue", size=1.5)
 
 ggsave(
   plot= paca_time, dpi=800,width = 20,height = 10, units = "cm",
@@ -70,7 +72,12 @@ paca_time_table <- ggplot(data = paca_counts,
        x = "Time", y = "Pancreatic cancer count")+
   labs(colour = "Station")+
   theme_bw()+
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  geom_vline(xintercept =  as.numeric(as.Date("2020-03-26",format = "%Y-%m-%d")), 
+             linetype="solid", color = "blue", size=1)+
+  annotate("text", x = (as.Date("2020-03-26",format = "%Y-%m-%d")+150), 
+           y = max(paca_counts$Panc_Ca_count,na.rm = TRUE)-0.1*max(paca_counts$Panc_Ca_count,na.rm = TRUE), 
+           label = "lockdown \n start", color = "blue") 
 # save
 ggsave(
   plot= paca_time_table, dpi=800,width = 20,height = 10, units = "cm",
@@ -105,3 +112,4 @@ ggsave(
   plot= paca_time_table_year, dpi=800,width = 20,height = 10, units = "cm",
   filename="paca_time_table_year.png", path=here::here("output"),
 )
+
