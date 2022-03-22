@@ -229,11 +229,11 @@ study = StudyDefinition(
         hba1c_new_codes,
         find_last_match_in_period=True,
         between=["pa_ca_date", "pa_ca_date + 1 years"],
-        returning="binary_flag",
-        include_date_of_match=True,
-        include_month=True,
-        include_day=True,
-        return_expectations={"incidence": 0.30},
+        returning="numeric_value",
+        return_expectations={
+            "float": {"distribution": "normal", "mean": 50.0, "stddev": 20},
+            "incidence": 0.95,
+        }
     ),
     diabetes=patients.with_these_clinical_events(
         diabetes_codes,
