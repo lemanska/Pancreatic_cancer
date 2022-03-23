@@ -35,7 +35,7 @@ Denominator <- read_csv(here::here("output", "measures", "measure_registered_rat
 
 X <- read_csv(here::here("output", "input.csv"))
 X$pa_ca_date <- as.Date(X$pa_ca_date,format = "%Y-%m-%d") 
-X <- X[which(X$pa_ca_date>="2015-01-01"),]
+X <- X[which(X$pa_ca_date>="2015-01-01" & X$pa_ca_date<"2022-03-01"),]
 X$Month <- as.Date(cut(X$pa_ca_date, breaks = "month"))
 # monthly counts 
 monthly_count <- aggregate(. ~ Month, X[,c("Month",
@@ -54,23 +54,35 @@ monthly_count <- monthly_count %>% mutate_at(vars("pa_ca", "diabetes", "liver_fu
                                                   "admitted_w_ca_after", "emergency_care_before", 
                                                   "emergency_care_after", "gp_consult_count"),
                                              redactor)
+# Merge it with the denominator table to create the monthly registered variable for calcualting rates
 monthly_count <- merge(monthly_count, Denominator[,c("registered", "date")],
                        by.x = "Month", by.y = "date")
 
+
+# Summarize monthly stats using median 
 monthly_median <- aggregate(. ~ Month, X[,c("Month",
                                            "admitted_before", "admitted_after", 
                                            "admitted_w_ca_before", "admitted_w_ca_after", 
                                            "emergency_care_before", "emergency_care_after",
                                            "gp_consult_count"
                                            )], median)
+# apply small number suppression based on number of pancreatic ca patients 
+monthly_median[which(is.na(monthly_count$pa_ca)),c("admitted_before", "admitted_after", 
+                  "admitted_w_ca_before", "admitted_w_ca_after", 
+                  "emergency_care_before", "emergency_care_after",
+                  "gp_consult_count")] <- NA
+
+# Summarize the variables using average 
 monthly_average <- aggregate(. ~ Month, X[,c("Month",
                                             "age", "bmi_before", "bmi_after", 
                                             "hba1c_before", "hba1c_after" 
                                             )], mean)
-
+# apply small number suppression based on number of pancreatic ca patients 
+monthly_average[which(is.na(monthly_count$pa_ca)),c("age", "bmi_before", "bmi_after",
+                                                    "hba1c_before", "hba1c_after")] <- NA
 
 #############
-### PLOTS
+### generate PLOTS 4 examples 
 #############
 
 ###
@@ -165,6 +177,7 @@ ggsave(
   filename="paca_time_table_year.png", path=here::here("output"),
 )
 
+
 ###
 # SAVE the output tables
 ###
@@ -177,3 +190,6 @@ write.table(monthly_median, here::here("output", "monthly_median.csv"),
             sep = ",",row.names = F)
 write.table(monthly_average, here::here("output", "monthly_average.csv"),
             sep = ",",row.names = F)
+
+
+
