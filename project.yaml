@@ -43,8 +43,8 @@ actions:
       ]
     outputs:
       moderately_sensitive:
-        Fig1: output/paca_time.png
-        Fig2: output/paca_time_table.png
+        Fig1: output/paca_time_table.png
+        Fig2: output/paca_time_table_year.png
         Fig3: output/paca_time_rates.png
         Fig4: output/paca_time_rates_year.png
         Tab1: output/monthly_count.csv
