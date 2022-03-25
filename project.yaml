@@ -38,8 +38,7 @@ actions:
     run: r:latest analysis/analysis_counts_average.R
     needs: 
       [
-        generate_study_population,
-        generate_measures,
+
       ]
     outputs:
       moderately_sensitive:
