@@ -1,0 +1,33 @@
+dmd_type,dmd_id,dmd_name,bnf_code
+VMP,36062411000001107,Generic Pancrex V oral powder sugar free,0109040N0AAAEAE
+VMP,4777111000001100,Generic Pancrex gastro-resistant granules,0109040N0AAAFAF
+VMP,8368511000001102,Generic Pancrex V capsules,0109040N0AAAGAG
+VMP,4077911000001100,Generic Pancrex V 125mg capsules,0109040N0AAAHAH
+VMP,4078011000001103,Generic Pancrex V gastro-resistant tablets,0109040N0AAAIAI
+VMP,8398911000001107,Generic Pancrex V Forte gastro-resistant tablets,0109040N0AAAJAJ
+VMP,4377911000001101,Generic Nutrizym GR modified-release capsules,0109040N0AAAKAK
+VMP,9151211000001106,Generic Pancrease gastro-resistant capsules,0109040N0AAANAN
+VMP,3437111000001108,Generic Creon 25000 gastro-resistant capsules,0109040N0AAAQAQ
+VMP,4551411000001100,Generic Creon 750mg gastro-resistant granules sachets,0109040N0AAARAR
+VMP,4018711000001109,Generic Pancrease HL gastro-resistant capsules,0109040N0AAASAS
+VMP,4018611000001100,Generic Nutrizym 10 gastro-resistant capsules,0109040N0AAATAT
+VMP,3437011000001107,Generic Creon 10000 gastro-resistant capsules,0109040N0AAAUAU
+VMP,8360311000001106,Generic Creon 40000 gastro-resistant capsules,0109040N0AAAWAW
+VMP,8062111000001107,Generic Creon Micro Pancreatin 60.12mg gastro-resistant granules,0109040N0AAAYAY
+VMP,4378011000001104,Generic Nutrizym 22 gastro-resistant capsules,0109040N0AAAZAZ
+AMP,4760211000001103,Pancrex gastro-resistant granules,0109040N0BBAAAF
+AMP,8361511000001107,Pancrex V capsules,0109040N0BBABAG
+AMP,4074011000001107,Pancrex V 125mg capsules,0109040N0BBACAH
+AMP,4736111000001101,Pancrex V oral powder,0109040N0BBADAE
+AMP,4075911000001105,Pancrex V gastro-resistant tablets,0109040N0BBAEAI
+AMP,8375211000001103,Pancrex V Forte gastro-resistant tablets,0109040N0BBAFAJ
+AMP,654311000001107,Creon 25000 gastro-resistant capsules,0109040N0BDABAQ
+AMP,4546811000001105,Creon 750mg gastro-resistant granules sachets,0109040N0BDACAR
+AMP,499411000001107,Creon 10000 gastro-resistant capsules,0109040N0BDADAU
+AMP,8349111000001105,Creon 40000 gastro-resistant capsules,0109040N0BDAFAW
+AMP,8062311000001109,Creon Micro Pancreatin 60.12mg gastro-resistant granules,0109040N0BDAGAY
+AMP,4377111000001104,Nutrizym GR modified-release capsules,0109040N0BEABAK
+AMP,4377411000001109,Nutrizym 22 gastro-resistant capsules,0109040N0BEACAZ
+AMP,3991911000001106,Nutrizym 10 gastro-resistant capsules,0109040N0BEADAT
+AMP,9150911000001109,Pancrease gastro-resistant capsules,0109040N0BFAAAN
+AMP,3995611000001102,Pancrease HL gastro-resistant capsules,0109040N0BFABAS

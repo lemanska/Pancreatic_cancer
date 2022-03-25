@@ -11,3 +11,4 @@ venv/
 *.Rproj
 .Rhistory
 /r_scripts/*
+/output_requests_releases/*

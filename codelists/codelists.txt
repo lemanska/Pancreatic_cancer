@@ -7,7 +7,7 @@ user/agleman/liver_function_tests/55f07be1
 user/agleman/jaundice/655a4816
 user/agleman/ca_19_9/51b054cd
 user/agleman/cea/680d080c
-user/agleman/pancreatic-enzyme-replacement-therapy/1cdeae6d
+user/agleman/pancreatic-enzyme-replacement-therapy-dmd/7137cecc
 user/agleman/pancreatic-cancer-icd10/6abfc802
 user/agleman/resection-of-pancreatic-cancer-opcs-4/7eb58e9a
 user/agleman/pancreatic-imaging-opcs-4/65a61b65
