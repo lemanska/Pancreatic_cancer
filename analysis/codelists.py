@@ -42,11 +42,11 @@ cancer_referral_codes = codelist_from_csv(
     column="code",
 )
 # treatment - enzyme replacement 
-# this is not right as it is a medication - should be dmd system?
+# this is not right as it is a medication - should be dmd system? - thanks Colm! 
 enzyme_replace = codelist_from_csv(
-    "codelists/user-agleman-pancreatic-enzyme-replacement-therapy.csv",
+    "codelists/user-agleman-pancreatic-enzyme-replacement-therapy-dmd.csv",
     system="snomed",
-    column="code",
+    column="dmd_id",
 )
 
 chemotherapy_or_radiotherapy_codes = codelist_from_csv(
