@@ -72,11 +72,17 @@ monthly_median[which(is.na(monthly_count$pa_ca)),c("admitted_before", "admitted_
                   "emergency_care_before", "emergency_care_after",
                   "gp_consult_count")] <- NA
 
-# Summarize the variables using average 
+# Summarize the variables using average
+# replace 0s with NAs
+for (i in which(colnames(X)%in%c("age", "bmi_before", "bmi_after",
+                     "hba1c_before", "hba1c_after"))){
+  X[which(X[,i]==0),i] <- NA
+}
+
 monthly_average <- aggregate(. ~ Month, X[,c("Month",
                                             "age", "bmi_before", "bmi_after", 
                                             "hba1c_before", "hba1c_after" 
-                                            )], mean)
+                                            )], mean, na.rm=TRUE, na.action=NULL)
 # apply small number suppression based on number of pancreatic ca patients 
 monthly_average[which(is.na(monthly_count$pa_ca)),c("age", "bmi_before", "bmi_after",
                                                     "hba1c_before", "hba1c_after")] <- NA
