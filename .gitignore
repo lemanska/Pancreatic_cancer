@@ -12,3 +12,4 @@ venv/
 .Rhistory
 /r_scripts/*
 /output_requests_releases/*
+/analysis/plots.R
