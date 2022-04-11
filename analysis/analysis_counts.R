@@ -72,11 +72,13 @@ monthly_count <- monthly_count %>% mutate_at(vars("pa_ca", "diabetes",
 ######################
 # summarise demographics 
 ######################
-demogs <- as.data.frame(c("age","sex","ethnicity")); colnames(demogs) <- "variable"
-demogs[,c(names(summary(X$age)))] <- NA; demogs[demogs$variable=="age",c(names(summary(X$age)))] <- as.numeric(summary(X$age))
-demogs[,c(names(table(X$sex)))] <- NA; demogs[demogs$variable=="sex",c(names(table(X$sex)))] <- as.numeric(table(X$sex))
-demogs[,c(names(table(X$ethnicity)))] <- NA; demogs[demogs$variable=="ethnicity",c(names(table(X$ethnicity)))] <- as.numeric(table(X$ethnicity))
-
+if (dim(X)[1]>10){
+  demogs <- as.data.frame(c("age","sex","ethnicity")); colnames(demogs) <- "variable"
+  demogs[,c(names(summary(X$age)))] <- NA; demogs[demogs$variable=="age",c(names(summary(X$age)))] <- as.numeric(summary(X$age))
+  demogs[,c(names(table(X$sex)))] <- NA; demogs[demogs$variable=="sex",c(names(table(X$sex)))] <- as.numeric(table(X$sex))
+  demogs[,c(names(table(X$ethnicity)))] <- NA; demogs[demogs$variable=="ethnicity",c(names(table(X$ethnicity)))] <- as.numeric(table(X$ethnicity))
+  demogs[4,1:3] <- c("tot_count",dim(X))
+}
 ###
 # SAVE the output tables
 ###
