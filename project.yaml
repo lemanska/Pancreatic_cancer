@@ -44,3 +44,6 @@ actions:
       moderately_sensitive:
         Tab1: output/monthly_count.csv
         Tab2: output/demographics.csv
+        Tab3: output/monthly_count_resect.csv
+        Tab4: output/monthly_count_died.csv
+        Tab5: output/monthly_count_GPconsult.csv
