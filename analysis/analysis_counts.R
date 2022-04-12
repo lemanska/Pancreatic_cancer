@@ -96,10 +96,3 @@ write.table(monthly_count, here::here("output", "monthly_count.csv"),
             sep = ",",row.names = F)
 write.table(demogs, here::here("output", "demographics.csv"),
             sep = ",",row.names = F)
-
-write.table(monthly_count$pancreatic_resection, here::here("output", "monthly_count_resect.csv"),
-            sep = ",",row.names = F)
-write.table(monthly_count[,c("died_any","died_paca")], here::here("output", "monthly_count_died.csv"),
-            sep = ",",row.names = F)
-write.table(monthly_count$gp_consult_before, here::here("output", "monthly_count_GPconsult.csv"),
-            sep = ",",row.names = F)
