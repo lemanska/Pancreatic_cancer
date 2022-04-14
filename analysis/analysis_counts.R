@@ -44,7 +44,7 @@ monthly_count <- aggregate(. ~ Month, X[,c("Month",
                           "liver_funct", "pancreatic_imaging", "jaundice", "gp_ca_referral", 
                           "enzyme_replace", "pancreatic_resection", "admitted_before", 
                           "admitted_after", "admitted_w_ca_before","admitted_w_ca_after", 
-                          "emergency_care_before", "emergency_care_after", "died_any", "died_paca",
+                          "emergency_care_before", "emergency_care_after", "died_any", 
                           "gp_consult_before","gp_consult_after","gp_PT_consult_before","gp_PT_consult_after"
                           )], sum)
 # calculate counts of people who died each month
@@ -65,7 +65,7 @@ monthly_count <- monthly_count %>% mutate_at(vars("pa_ca", "diabetes",
                                                   "enzyme_replace", "pancreatic_resection", "admitted_before", 
                                                   "admitted_after", "admitted_w_ca_before","admitted_w_ca_after", 
                                                   "emergency_care_before", "emergency_care_after", 
-                                                  "died_any", "died_paca", "died_any_month", "died_paca_month",
+                                                  "died_any", "died_any_month", "died_paca_month",
                                                   "gp_consult_before","gp_consult_after","gp_PT_consult_before","gp_PT_consult_after"),
                                              redactor)
 
