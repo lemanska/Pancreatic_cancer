@@ -227,12 +227,12 @@ study = StudyDefinition(
             "incidence": 0.80
         },
     ),
-    died_paca=patients.with_these_codes_on_death_certificate(
-        pa_ca_icd10,
-        between=["pa_ca_date", "pa_ca_date + 6 months", ],
-        match_only_underlying_cause=False,
-        return_expectations={"incidence": 0.50},
-    ),
+#    died_paca=patients.with_these_codes_on_death_certificate(
+#        pa_ca_icd10,
+#        between=["pa_ca_date", "pa_ca_date + 6 months", ],
+#        match_only_underlying_cause=False,
+#        return_expectations={"incidence": 0.50},
+#    ),
     died_paca_date=patients.with_these_codes_on_death_certificate(
         pa_ca_icd10,
         on_or_after="pa_ca_date",
