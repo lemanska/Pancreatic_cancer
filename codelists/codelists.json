@@ -12,6 +12,12 @@
       "downloaded_at": "2021-10-28 20:33:20.611002Z",
       "sha": "3d2f3998b71863a80b24d60f6f4282e14191ae13"
     },
+    "opensafely-glycated-haemoglobin-hba1c-tests.csv": {
+      "id": "opensafely/glycated-haemoglobin-hba1c-tests/2ab11f20",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/glycated-haemoglobin-hba1c-tests/2ab11f20/",
+      "downloaded_at": "2022-08-03 16:46:17.623048Z",
+      "sha": "fb9a968b5644c14c570bf2b8708381600f4bd1f5"
+    },
     "user-agleman-cancer_referrals_pancreatic_cancer_snomed.csv": {
       "id": "user/agleman/cancer_referrals_pancreatic_cancer_snomed/3a1b76bc",
       "url": "https://codelists.opensafely.org/codelist/user/agleman/cancer_referrals_pancreatic_cancer_snomed/3a1b76bc/",

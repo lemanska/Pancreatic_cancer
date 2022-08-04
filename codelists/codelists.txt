@@ -1,5 +1,6 @@
 opensafely/chemotherapy-or-radiotherapy/2020-04-15
 opensafely/ethnicity/2020-04-27
+opensafely/glycated-haemoglobin-hba1c-tests/2ab11f20
 user/agleman/cancer_referrals_pancreatic_cancer_snomed/3a1b76bc
 user/agleman/pancreatic_cancer_snomed/11566403
 opensafely/diabetes/2020-04-15

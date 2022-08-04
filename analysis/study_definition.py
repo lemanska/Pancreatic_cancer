@@ -103,13 +103,13 @@ study = StudyDefinition(
         }
     ),
     hba1c_before=patients.with_these_clinical_events(
-        hba1c_new_codes,
+        hba1c_codes,
         between=["pa_ca_date - 6 months", "pa_ca_date"],
         returning="binary_flag",
         return_expectations={"incidence": 0.50},
     ),
     hba1c_after=patients.with_these_clinical_events(
-        hba1c_new_codes,
+        hba1c_codes,
         between=["pa_ca_date", "pa_ca_date + 6 months"],
         returning="binary_flag",
         return_expectations={"incidence": 0.50},

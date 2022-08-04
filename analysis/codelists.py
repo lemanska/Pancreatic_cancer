@@ -83,7 +83,13 @@ pa_ca_icd10 = codelist_from_csv(
 )
 
 # HbA1c
-hba1c_new_codes = codelist(["XaPbt", "Xaeze", "Xaezd"], system="ctv3")
+#hba1c_new_codes = codelist(["XaPbt", "Xaeze", "Xaezd"], system="ctv3")
+
+hba1c_codes = codelist_from_csv(
+    "codelists/opensafely-glycated-haemoglobin-hba1c-tests.csv",
+    system="snomed",
+    column="code",
+)
 
 # Pancreatic imaging
 pancreatic_imaging_OPCS4 = codelist_from_csv(

@@ -107,3 +107,18 @@ write.table(monthly_count, here::here("output", "monthly_count.csv"),
             sep = ",",row.names = F)
 write.table(demogs, here::here("output", "demographics.csv"),
             sep = ",",row.names = F)
+
+
+
+
+
+
+monthly_count <- monthly_count[-87,]
+
+m_c_PreCOVID <- monthly_count[1:62,]
+m_c_COVID <- monthly_count[63:75,]
+m_c_PostCOVID <- monthly_count[76:86,]
+
+round(mean(monthly_count$pa_ca))
+
+
