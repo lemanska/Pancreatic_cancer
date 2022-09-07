@@ -1,14 +1,10 @@
 opensafely/chemotherapy-or-radiotherapy/2020-04-15
 opensafely/ethnicity/2020-04-27
-opensafely/glycated-haemoglobin-hba1c-tests/2ab11f20
-user/agleman/cancer_referrals_pancreatic_cancer_snomed/3a1b76bc
+opensafely/glycated-haemoglobin-hba1c-tests/3e5b1269
 user/agleman/pancreatic_cancer_snomed/11566403
 opensafely/diabetes/2020-04-15
 user/agleman/liver_function_tests/55f07be1
 user/agleman/jaundice/655a4816
-user/agleman/ca_19_9/51b054cd
-user/agleman/cea/680d080c
 user/agleman/pancreatic-enzyme-replacement-therapy-dmd/7137cecc
-user/agleman/pancreatic-cancer-icd10/6abfc802
 user/agleman/resection-of-pancreatic-cancer-opcs-4/7eb58e9a
 user/agleman/pancreatic-imaging-opcs-4/65a61b65

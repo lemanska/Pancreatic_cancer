@@ -120,9 +120,15 @@ study = StudyDefinition(
         return_expectations={"incidence": 0.30},
     ),
 # Diagnostic tests prior to diagnosis
-    liver_funct=patients.with_these_clinical_events(
+    liver_funct_before=patients.with_these_clinical_events(
         liver_funct_codes,
         between=["pa_ca_date - 6 months", "pa_ca_date"],
+        returning="binary_flag",
+        return_expectations={"incidence": 0.50},
+    ),
+    liver_funct_after=patients.with_these_clinical_events(
+        liver_funct_codes,
+        between=["pa_ca_date", "pa_ca_date + 6 months"],
         returning="binary_flag",
         return_expectations={"incidence": 0.50},
     ),
@@ -139,13 +145,6 @@ study = StudyDefinition(
         between=["pa_ca_date - 6 months", "pa_ca_date"],
         returning="binary_flag",
         return_expectations={"incidence": 0.60},
-    ),
-# Referrals from primary care
-    gp_ca_referral=patients.with_these_clinical_events(
-        cancer_referral_codes,
-        between=["pa_ca_date - 6 months", "pa_ca_date"],
-        returning="binary_flag",
-        return_expectations={"incidence": 0.6},
     ),
 # treatment
     enzyme_replace=patients.with_these_medications(
@@ -175,24 +174,6 @@ study = StudyDefinition(
         return_expectations={
             "int": {"distribution": "normal", "mean": 3, "stddev": 3},
             "incidence": 0.6,
-        }
-    ),
-    admitted_w_ca_before=patients.admitted_to_hospital(
-        with_these_diagnoses=pa_ca_icd10,
-        between=["pa_ca_date - 6 months", "pa_ca_date", ],
-        returning="number_of_matches_in_period",
-        return_expectations={
-            "int": {"distribution": "normal", "mean": 2, "stddev": 2},
-            "incidence": 0.3,
-        }
-    ),
-    admitted_w_ca_after=patients.admitted_to_hospital(
-        with_these_diagnoses=pa_ca_icd10,
-        between=["pa_ca_date", "pa_ca_date + 6 months", ],
-        returning="number_of_matches_in_period",
-        return_expectations={
-            "int": {"distribution": "normal", "mean": 2, "stddev": 2},
-            "incidence": 0.3,
         }
     ),
     emergency_care_before=patients.attended_emergency_care(
@@ -225,24 +206,6 @@ study = StudyDefinition(
             "date": {"earliest": "2015-01-01"},
             "rate": "exponential_increase",
             "incidence": 0.80
-        },
-    ),
-    died_paca=patients.with_these_codes_on_death_certificate(
-        pa_ca_icd10,
-        between=["pa_ca_date", "pa_ca_date + 6 months", ],
-        match_only_underlying_cause=False,
-        return_expectations={"incidence": 0.50},
-    ),
-    died_paca_date=patients.with_these_codes_on_death_certificate(
-        pa_ca_icd10,
-        on_or_after="pa_ca_date",
-        match_only_underlying_cause=False,
-        returning="date_of_death",
-        date_format="YYYY-MM-DD",
-        return_expectations={
-            "date": {"earliest": "2015-01-01"},
-            "rate": "exponential_increase",
-            "incidence": 0.50
         },
     ),
     gp_consult_before=patients.with_gp_consultations(

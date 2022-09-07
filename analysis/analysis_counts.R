@@ -1,7 +1,7 @@
 ### INFO
 # project: Project #27: The effect of COVID-19 on pancreatic cancer diagnosis and care.
 # author: Agz Leman
-# 5 April 2022
+# 7 September 2022
 # Calculates monthly counts in the pa ca study 
 # Generates output table 
 ###
@@ -35,7 +35,7 @@ redactor <- function(n, threshold=6,e_overwrite=NA_integer_){
 
 X <- read_csv(here::here("output", "input.csv"))
 X$pa_ca_date <- as.Date(X$pa_ca_date,format = "%Y-%m-%d") 
-X <- X[which(X$pa_ca_date>="2015-01-01" & X$pa_ca_date<="2022-03-01"),]
+X <- X[which(X$pa_ca_date>="2015-01-01" & X$pa_ca_date<"2022-09-01"),]
 X$Month <- as.Date(cut(X$pa_ca_date, breaks = "month"))
 X$bmi_before[X$bmi_before!=0] <- 1
 X$bmi_after[X$bmi_after!=0] <- 1
@@ -43,49 +43,54 @@ X$bmi_after[X$bmi_after!=0] <- 1
 monthly_count <- aggregate(. ~ Month, X[,c("Month",
                           "pa_ca", "diabetes", 
                           "bmi_before", "bmi_after", "hba1c_before", "hba1c_after",
-                          "liver_funct", "pancreatic_imaging", "jaundice", "gp_ca_referral", 
-                          "enzyme_replace", "pancreatic_resection", "admitted_before", 
-                          "admitted_after", "admitted_w_ca_before","admitted_w_ca_after", 
-                          "emergency_care_before", "emergency_care_after", "died_any", "died_paca",
-                          "gp_consult_before","gp_consult_after","gp_PT_consult_before","gp_PT_consult_after"
+                          "liver_funct_before","liver_funct_after", 
+                          "pancreatic_imaging", "jaundice",
+                          "enzyme_replace", "pancreatic_resection", 
+                          "admitted_before", "admitted_after", 
+                          "emergency_care_before", "emergency_care_after", 
+                          "died_any", 
+                          "gp_consult_before","gp_consult_after",
+                          "gp_PT_consult_before","gp_PT_consult_after"
                           )], sum)
-# calculate counts of people who died each month
-t1 <- as.data.frame(table(as.Date(cut(X$died_any_date, breaks = "month")))); 
-colnames(t1) <- c("Month","died_any_month"); t1$Month <- as.Date(t1$Month)
-monthly_count <- merge(monthly_count,t1,by = "Month", all.x = TRUE); rm(t1)
-monthly_count$died_any_month[is.na(monthly_count$died_any_month)] <- 0
-
-t1 <- as.data.frame(table(as.Date(cut(X$died_paca_date, breaks = "month")))); 
-colnames(t1) <- c("Month","died_paca_month"); t1$Month <- as.Date(t1$Month)
-monthly_count <- merge(monthly_count,t1,by = "Month", all.x = TRUE); rm(t1)
-monthly_count$died_paca_month[is.na(monthly_count$died_paca_month)] <- 0
+# # calculate counts of people who died each month
+# t1 <- as.data.frame(table(as.Date(cut(X$died_any_date, breaks = "month")))); 
+# colnames(t1) <- c("Month","died_any_month"); t1$Month <- as.Date(t1$Month)
+# monthly_count <- merge(monthly_count,t1,by = "Month", all.x = TRUE); rm(t1)
+# monthly_count$died_any_month[is.na(monthly_count$died_any_month)] <- 0
+# 
+# t1 <- as.data.frame(table(as.Date(cut(X$died_paca_date, breaks = "month")))); 
+# colnames(t1) <- c("Month","died_paca_month"); t1$Month <- as.Date(t1$Month)
+# monthly_count <- merge(monthly_count,t1,by = "Month", all.x = TRUE); rm(t1)
+# monthly_count$died_paca_month[is.na(monthly_count$died_paca_month)] <- 0
 
 # apply small number suppression 
 monthly_count <- monthly_count %>% mutate_at(vars("pa_ca", "diabetes", 
                                                   "bmi_before", "bmi_after", "hba1c_before", "hba1c_after",
-                                                  "liver_funct", "pancreatic_imaging", "jaundice", "gp_ca_referral", 
-                                                  "enzyme_replace", "pancreatic_resection", "admitted_before", 
-                                                  "admitted_after", "admitted_w_ca_before","admitted_w_ca_after", 
+                                                  "liver_funct_before","liver_funct_after", 
+                                                  "pancreatic_imaging", "jaundice",
+                                                  "enzyme_replace", "pancreatic_resection", 
+                                                  "admitted_before", "admitted_after", 
                                                   "emergency_care_before", "emergency_care_after", 
-                                                  "died_any", "died_paca", "died_any_month", "died_paca_month",
-                                                  "gp_consult_before","gp_consult_after","gp_PT_consult_before","gp_PT_consult_after"),
-                                             redactor)
+                                                  "died_any", 
+                                                  "gp_consult_before","gp_consult_after",
+                                                  "gp_PT_consult_before","gp_PT_consult_after"),redactor)
 
 ######################
-# round variables with paca and all_case because if dif risk
-i2 <- which(colnames(monthly_count) %in% c("admitted_before", "admitted_after", 
-                                     "admitted_w_ca_before","admitted_w_ca_after",
-                                     "died_any", "died_paca" ))
-for (i in i2){
-  monthly_count[,i] <- round_any(monthly_count[,i],5) 
-}
-colnames(monthly_count)[i2] <- paste0(colnames(monthly_count[,i2]), "_ROUNED")
+# # round variables with paca and all_case because if dif risk
+# i2 <- which(colnames(monthly_count) %in% c("admitted_before", "admitted_after", 
+#                                      "admitted_w_ca_before","admitted_w_ca_after",
+#                                      "died_any", "died_paca" ))
+# for (i in i2){
+#   monthly_count[,i] <- round_any(monthly_count[,i],5) 
+# }
+# colnames(monthly_count)[i2] <- paste0(colnames(monthly_count[,i2]), "_ROUNED")
 
 # summarise demographics 
 ######################
 if (dim(X)[1]>10){
-  demogs <- as.data.frame(c("tot_count", "age","sex","ethnicity")); colnames(demogs) <- "variable"
+  demogs <- as.data.frame(c("tot_count", "diabetes","age","sex","ethnicity")); colnames(demogs) <- "variable"
   demogs[demogs$variable=="tot_count","popul_count"] <- dim(X)[1]
+  demogs[demogs$variable=="diabetes","popul_count"] <- length(which(as.numeric(X$diabetes)==1))
   demogs[demogs$variable=="age","mean"] <- mean(X$age,na.rm = TRUE)
   demogs[demogs$variable=="age","sd"] <- sd(X$age,na.rm = TRUE)
   demogs[demogs$variable=="age","median"] <- median(X$age,na.rm = TRUE)
@@ -108,17 +113,5 @@ write.table(monthly_count, here::here("output", "monthly_count.csv"),
 write.table(demogs, here::here("output", "demographics.csv"),
             sep = ",",row.names = F)
 
-
-
-
-
-
-monthly_count <- monthly_count[-87,]
-
-m_c_PreCOVID <- monthly_count[1:62,]
-m_c_COVID <- monthly_count[63:75,]
-m_c_PostCOVID <- monthly_count[76:86,]
-
-round(mean(monthly_count$pa_ca))
 
 
