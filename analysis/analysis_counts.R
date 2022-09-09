@@ -76,14 +76,20 @@ monthly_count <- monthly_count %>% mutate_at(vars("pa_ca", "diabetes",
                                                   "gp_PT_consult_before","gp_PT_consult_after"),redactor)
 
 ######################
-# # round variables with paca and all_case because if dif risk
-# i2 <- which(colnames(monthly_count) %in% c("admitted_before", "admitted_after", 
-#                                      "admitted_w_ca_before","admitted_w_ca_after",
-#                                      "died_any", "died_paca" ))
-# for (i in i2){
-#   monthly_count[,i] <- round_any(monthly_count[,i],5) 
-# }
-# colnames(monthly_count)[i2] <- paste0(colnames(monthly_count[,i2]), "_ROUNED")
+# round variables with paca and all_case because if dif risk
+i2 <- which(colnames(monthly_count) %in% c("pa_ca", "diabetes",
+                                           "bmi_before", "bmi_after", "hba1c_before", "hba1c_after",
+                                           "liver_funct_before","liver_funct_after",
+                                           "pancreatic_imaging", "jaundice",
+                                           "enzyme_replace", "pancreatic_resection",
+                                           "admitted_before", "admitted_after",
+                                           "emergency_care_before", "emergency_care_after",
+                                           "died_any","gp_consult_before","gp_consult_after",
+                                           "gp_PT_consult_before","gp_PT_consult_after"))
+for (i in i2){
+  monthly_count[,i] <- round_any(monthly_count[,i],5)
+}
+colnames(monthly_count)[i2] <- paste0(colnames(monthly_count[,i2]), "_ROUNED")
 
 # summarise demographics 
 ######################
