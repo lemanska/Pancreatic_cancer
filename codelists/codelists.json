@@ -12,11 +12,11 @@
       "downloaded_at": "2021-10-28 20:33:20.611002Z",
       "sha": "3d2f3998b71863a80b24d60f6f4282e14191ae13"
     },
-    "user-agleman-cancer_referrals_pancreatic_cancer_snomed.csv": {
-      "id": "user/agleman/cancer_referrals_pancreatic_cancer_snomed/3a1b76bc",
-      "url": "https://codelists.opensafely.org/codelist/user/agleman/cancer_referrals_pancreatic_cancer_snomed/3a1b76bc/",
-      "downloaded_at": "2022-03-18 13:14:08.586831Z",
-      "sha": "b5c251d629a726dd126f3204a249f75d313e2a0b"
+    "opensafely-glycated-haemoglobin-hba1c-tests.csv": {
+      "id": "opensafely/glycated-haemoglobin-hba1c-tests/3e5b1269",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/glycated-haemoglobin-hba1c-tests/3e5b1269/",
+      "downloaded_at": "2022-09-07 20:40:47.211170Z",
+      "sha": "2633371982cd2125e39972fa9a075a2b2ff50208"
     },
     "user-agleman-pancreatic_cancer_snomed.csv": {
       "id": "user/agleman/pancreatic_cancer_snomed/11566403",
@@ -42,29 +42,11 @@
       "downloaded_at": "2021-12-15 16:13:17.459545Z",
       "sha": "8ae10a30d2a063efed096be1c8436291c6c9743b"
     },
-    "user-agleman-ca_19_9.csv": {
-      "id": "user/agleman/ca_19_9/51b054cd",
-      "url": "https://codelists.opensafely.org/codelist/user/agleman/ca_19_9/51b054cd/",
-      "downloaded_at": "2021-12-15 18:22:35.024341Z",
-      "sha": "ca0d80efe6e280cc0dfb329b0aed7c7b030e93bd"
-    },
-    "user-agleman-cea.csv": {
-      "id": "user/agleman/cea/680d080c",
-      "url": "https://codelists.opensafely.org/codelist/user/agleman/cea/680d080c/",
-      "downloaded_at": "2021-12-15 16:38:27.034289Z",
-      "sha": "dc0eccfe2be8b8214c7b8bfdb9665134af3a6948"
-    },
     "user-agleman-pancreatic-enzyme-replacement-therapy-dmd.csv": {
       "id": "user/agleman/pancreatic-enzyme-replacement-therapy-dmd/7137cecc",
       "url": "https://codelists.opensafely.org/codelist/user/agleman/pancreatic-enzyme-replacement-therapy-dmd/7137cecc/",
       "downloaded_at": "2022-03-25 14:45:37.757410Z",
       "sha": "96b5d2a485eb14317b1fbc41361e44db04730044"
-    },
-    "user-agleman-pancreatic-cancer-icd10.csv": {
-      "id": "user/agleman/pancreatic-cancer-icd10/6abfc802",
-      "url": "https://codelists.opensafely.org/codelist/user/agleman/pancreatic-cancer-icd10/6abfc802/",
-      "downloaded_at": "2021-12-15 21:17:03.780207Z",
-      "sha": "bf5f5c19c16ae8f02efd4915982e4b5910d4bbaf"
     },
     "user-agleman-resection-of-pancreatic-cancer-opcs-4.csv": {
       "id": "user/agleman/resection-of-pancreatic-cancer-opcs-4/7eb58e9a",
