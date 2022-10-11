@@ -12,7 +12,7 @@ library(here)
 library(plyr)
 
 ## Redactor code (W.Hulme)
-redactor <- function(n, threshold=6,e_overwrite=NA_integer_){
+redactor <- function(n, threshold=7,e_overwrite=NA_integer_){
   # given a vector of frequencies, this returns a boolean vector that is TRUE if
   # a) the frequency is <= the redaction threshold and
   # b) if the sum of redacted frequencies in a) is still <= the threshold, then the
