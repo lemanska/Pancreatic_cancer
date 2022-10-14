@@ -95,18 +95,19 @@ colnames(monthly_count)[i2] <- paste0(colnames(monthly_count[,i2]), "_ROUNED")
 ######################
 if (dim(X)[1]>10){
   demogs <- as.data.frame(c("tot_count", "diabetes","age","sex","ethnicity")); colnames(demogs) <- "variable"
-  demogs[demogs$variable=="tot_count","popul_count"] <- dim(X)[1]
-  demogs[demogs$variable=="diabetes","popul_count"] <- length(which(as.numeric(X$diabetes)==1))
-  demogs[demogs$variable=="age","mean"] <- mean(X$age,na.rm = TRUE)
-  demogs[demogs$variable=="age","sd"] <- sd(X$age,na.rm = TRUE)
+  demogs[demogs$variable=="tot_count","popul_count"] <- round_any(redactor(dim(X)[1]),5)
+  demogs[demogs$variable=="diabetes","popul_count"] <- round_any(redactor(length(which(as.numeric(X$diabetes)==1))),5)
+  demogs[demogs$variable=="age","mean"] <- round(mean(X$age,na.rm = TRUE),1)
+  demogs[demogs$variable=="age","sd"] <- round(sd(X$age,na.rm = TRUE),1)
   demogs[demogs$variable=="age","median"] <- median(X$age,na.rm = TRUE)
   demogs[demogs$variable=="age","IQR"] <- IQR(X$age,na.rm = TRUE)
   demogs[demogs$variable=="age","fstQ"] <- as.numeric(summary(X$age)[2])
   demogs[demogs$variable=="age","trdQ"] <- as.numeric(summary(X$age)[5])
-  demogs[,c(names(table(X$sex)))] <- NA; demogs[demogs$variable=="sex",c(names(table(X$sex)))] <- as.numeric(table(X$sex))
-  demogs[,c(names(table(X$ethnicity)))] <- NA; demogs[demogs$variable=="ethnicity",c(names(table(X$ethnicity)))] <- as.numeric(table(X$ethnicity))
+  demogs[,c(names(table(X$sex)))] <- NA; demogs[demogs$variable=="sex",c(names(table(X$sex)))] <- round_any(redactor(as.numeric(table(X$sex))),5)
+  demogs[,c(names(table(X$ethnicity)))] <- NA; demogs[demogs$variable=="ethnicity",c(names(table(X$ethnicity)))] <- round_any(redactor(as.numeric(table(X$ethnicity))),5)
   colnames(demogs)[which(colnames(demogs)=="South Asian")] <- "South_Asian"
 }
+
 ###
 # SAVE the output tables
 ###
