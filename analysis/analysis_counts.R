@@ -35,7 +35,7 @@ redactor <- function(n, threshold=7,e_overwrite=NA_integer_){
 
 X <- read_csv(here::here("output", "input.csv"))
 X$pa_ca_date <- as.Date(X$pa_ca_date,format = "%Y-%m-%d") 
-X <- X[which(X$pa_ca_date>="2015-01-01" & X$pa_ca_date<"2022-11-01"),]
+X <- X[which(X$pa_ca_date>="2015-01-01" & X$pa_ca_date<"2022-10-01"),]
 X$Month <- as.Date(cut(X$pa_ca_date, breaks = "month"))
 X$bmi_before[X$bmi_before!=0] <- 1
 X$bmi_after[X$bmi_after!=0] <- 1
