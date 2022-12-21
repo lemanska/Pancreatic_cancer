@@ -1,10 +1,10 @@
-# Study1example
+# Pancreatic cancer care in the COVID-19 pandemic
 
-This is the code and configuration for Study1example.
+This is the code and configuration for Pancreatic cancer care in the COVID-19 pandemic Study
 
-You can run this project via [Gitpod](https://gitpod.io) in a web browser by clicking on this badge: [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/lemanska/Study1example)
+You can run this project via [Gitpod](https://gitpod.io) in a web browser by clicking on this badge: [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/lemanska/Pancreatic_cancer)
 
-* The paper is [here]()
+* The paper is [here](https://www.medrxiv.org/content/10.1101/2022.12.02.22283026v1)
 * Raw model outputs, including charts, crosstabs, etc, are in `released_outputs/`
 * If you are interested in how we defined our variables, take a look at the [study definition](analysis/study_definition.py); this is written in `python`, but non-programmers should be able to understand what is going on there
 * If you are interested in how we defined our code lists, look in the [codelists folder](./codelists/).
