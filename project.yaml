@@ -18,7 +18,7 @@ actions:
         cohort: output/measures/input*.feather
   
   generate_denominator_2:    
-    run: cohortextractor:latest generate_cohort --study-definition study_definition_denominator --index-date-range "2019-02-01 to 2022-10-01 by month" --skip-existing --output-dir=output --output-format=feather
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_denominator --index-date-range "2019-02-01 to 2023-05-01 by month" --skip-existing --output-dir=output --output-format=feather
     outputs:      
       highly_sensitive:
         cohort: output/measures/inpu*.feather
