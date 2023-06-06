@@ -33,7 +33,7 @@ redactor <- function(n, threshold=7,e_overwrite=NA_integer_){
 #download and prep the data
 ###
 
-X <- read_csv(here::here("output", "inpu.csv"))
+X <- read_csv(here::here("output", "input.csv"))
 X$pa_ca_date <- as.Date(X$pa_ca_date,format = "%Y-%m-%d") 
 X <- X[which(X$pa_ca_date>="2015-01-01" & X$pa_ca_date<"2023-06-01"),]
 X$Month <- as.Date(cut(X$pa_ca_date, breaks = "month"))
