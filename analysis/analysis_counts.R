@@ -114,11 +114,24 @@ if (dim(X)[1]>10){
 ms <- format(ISOdatetime(2000,1:12,1,0,0,0),"%b")# generate month names
 monthly_count$MonthNo <- as.numeric(substr(monthly_count$Month, 6, 7))
 monthly_count$Month_name <- ms[monthly_count$MonthNo]
+
+### 
+# round the registered table 
+###
+measure_registered_rate_rounded <- read_csv(here::here("output", "measures", "measure_registered_rate.csv"))
+measure_registered_rate_rounded <- as.data.frame(measure_registered_rate_rounded)
+for (i in c(1,2)){
+  measure_registered_rate_rounded[,i] <- round_any(measure_registered_rate_rounded[,i],5)
+}
+measure_registered_rate_rounded$value <- round(measure_registered_rate_rounded$registered/measure_registered_rate_rounded$population,2)
+
+
 # save the tables 
 write.table(monthly_count, here::here("output", "monthly_count.csv"),
             sep = ",",row.names = F)
 write.table(demogs, here::here("output", "demographics.csv"),
             sep = ",",row.names = F)
-
+write.table(measure_registered_rate_rounded, here::here("output", "measure_registered_rate_rounded.csv"),
+            sep = ",",row.names = F)
 
 
