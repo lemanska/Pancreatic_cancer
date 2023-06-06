@@ -118,7 +118,8 @@ monthly_count$Month_name <- ms[monthly_count$MonthNo]
 ### 
 # round the registered table 
 ###
-measure_registered_rate_rounded <- read_csv(here::here("output", "measures", "measure_registered_rate.csv"))
+#measure_registered_rate_rounded <- read_csv(here::here("output", "measures", "measure_registered_rate.csv"))
+measure_registered_rate_rounded <- read.csv('output/measures/measure_registered_rate.csv')
 measure_registered_rate_rounded <- as.data.frame(measure_registered_rate_rounded)
 for (i in c(1,2)){
   measure_registered_rate_rounded[,i] <- round_any(measure_registered_rate_rounded[,i],5)
