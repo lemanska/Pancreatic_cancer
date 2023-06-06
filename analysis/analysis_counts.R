@@ -1,7 +1,7 @@
 ### INFO
 # project: Project #27: The effect of COVID-19 on pancreatic cancer diagnosis and care.
 # author: Agz Leman
-# 7 September 2022
+# 6 June 2023
 # Calculates monthly counts in the pa ca study 
 # Generates output table 
 ###
@@ -35,7 +35,7 @@ redactor <- function(n, threshold=7,e_overwrite=NA_integer_){
 
 X <- read_csv(here::here("output", "input.csv"))
 X$pa_ca_date <- as.Date(X$pa_ca_date,format = "%Y-%m-%d") 
-X <- X[which(X$pa_ca_date>="2015-01-01" & X$pa_ca_date<"2022-10-01"),]
+X <- X[which(X$pa_ca_date>="2015-01-01" & X$pa_ca_date<"2023-06-01"),]
 X$Month <- as.Date(cut(X$pa_ca_date, breaks = "month"))
 X$bmi_before[X$bmi_before!=0] <- 1
 X$bmi_after[X$bmi_after!=0] <- 1
