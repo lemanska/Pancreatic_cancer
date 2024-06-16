@@ -48,7 +48,7 @@ monthly_count <- aggregate(. ~ Month, X[,c("Month",
                           "enzyme_replace", "pancreatic_resection", 
                           "admitted_before", "admitted_after", 
                           "emergency_care_before", "emergency_care_after", 
-                          "died_any", 
+                          "died_any" 
 #                          "gp_consult_before","gp_consult_after",
 #                          "gp_PT_consult_before","gp_PT_consult_after"
                           )], sum)
@@ -71,7 +71,7 @@ monthly_count <- monthly_count %>% mutate_at(vars("pa_ca", "diabetes",
                                                   "enzyme_replace", "pancreatic_resection", 
                                                   "admitted_before", "admitted_after", 
                                                   "emergency_care_before", "emergency_care_after", 
-                                                  "died_any", 
+                                                  "died_any"
 #                                                  "gp_consult_before","gp_consult_after",
 #                                                  "gp_PT_consult_before","gp_PT_consult_after"
                                                   ),redactor)
@@ -85,7 +85,7 @@ i2 <- which(colnames(monthly_count) %in% c("pa_ca", "diabetes",
                                            "enzyme_replace", "pancreatic_resection",
                                            "admitted_before", "admitted_after",
                                            "emergency_care_before", "emergency_care_after",
-                                           "died_any",
+                                           "died_any"
 #                                           "gp_consult_before","gp_consult_after",
 #                                           "gp_PT_consult_before","gp_PT_consult_after"
                                            ))
