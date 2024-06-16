@@ -12,13 +12,13 @@ actions:
         cohort: output/input.csv
 
   generate_denominator_1:    
-    run: cohortextractor:latest generate_cohort --study-definition study_definition_denominator --index-date-range "2015-01-01 to 2019-01-01 by month" --skip-existing --output-dir=output --output-format=feather
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_denominator --index-date-range "2015-01-01 to 2019-08-01 by month" --skip-existing --output-dir=output --output-format=feather
     outputs:      
       highly_sensitive:
         cohort: output/measures/input*.feather
   
   generate_denominator_2:    
-    run: cohortextractor:latest generate_cohort --study-definition study_definition_denominator --index-date-range "2019-02-01 to 2023-05-01 by month" --skip-existing --output-dir=output --output-format=feather
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_denominator --index-date-range "2019-09-01 to 2024-05-01 by month" --skip-existing --output-dir=output --output-format=feather
     outputs:      
       highly_sensitive:
         cohort: output/measures/inpu*.feather
@@ -46,3 +46,5 @@ actions:
         Tab1: output/monthly_count.csv
         Tab2: output/demographics.csv
         Tab3: output/measure_registered_rate_rounded.csv
+        Tab4: output/month_mortality.csv
+        Fig1: output/weeks.png

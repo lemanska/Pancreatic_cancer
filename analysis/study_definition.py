@@ -208,30 +208,30 @@ study = StudyDefinition(
             "incidence": 0.80
         },
     ),
-    gp_consult_before=patients.with_gp_consultations(
-        between=["pa_ca_date - 6 months", "pa_ca_date"],
-        returning="number_of_matches_in_period",
-        return_expectations={
-            "int": {"distribution": "normal", "mean": 6, "stddev": 3},
-            "incidence": 0.6,
-        },
-    ),
-    gp_consult_after=patients.with_gp_consultations(
-        between=["pa_ca_date", "pa_ca_date + 6 months"],
-        returning="number_of_matches_in_period",
-        return_expectations={
-            "int": {"distribution": "normal", "mean": 6, "stddev": 3},
-            "incidence": 0.6,
-        },
-    ),
-    gp_PT_consult_before=patients.with_gp_consultations(
-        between=["pa_ca_date - 6 months", "pa_ca_date"],
-        returning="binary_flag",
-        return_expectations={"incidence": 0.50},
-    ),
-    gp_PT_consult_after=patients.with_gp_consultations(
-        between=["pa_ca_date", "pa_ca_date + 6 months"],
-        returning="binary_flag",
-        return_expectations={"incidence": 0.50},
-    ),
+    # gp_consult_before=patients.with_gp_consultations(
+    #     between=["pa_ca_date - 6 months", "pa_ca_date"],
+    #     returning="number_of_matches_in_period",
+    #     return_expectations={
+    #         "int": {"distribution": "normal", "mean": 6, "stddev": 3},
+    #         "incidence": 0.6,
+    #     },
+    # ),
+    # gp_consult_after=patients.with_gp_consultations(
+    #     between=["pa_ca_date", "pa_ca_date + 6 months"],
+    #     returning="number_of_matches_in_period",
+    #     return_expectations={
+    #         "int": {"distribution": "normal", "mean": 6, "stddev": 3},
+    #         "incidence": 0.6,
+    #     },
+    # ),
+    # gp_PT_consult_before=patients.with_gp_consultations(
+    #     between=["pa_ca_date - 6 months", "pa_ca_date"],
+    #     returning="binary_flag",
+    #     return_expectations={"incidence": 0.50},
+    # ),
+    # gp_PT_consult_after=patients.with_gp_consultations(
+    #     between=["pa_ca_date", "pa_ca_date + 6 months"],
+    #     returning="binary_flag",
+    #     return_expectations={"incidence": 0.50},
+    # ),
 )
