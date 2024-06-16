@@ -2,61 +2,61 @@
   "files": {
     "opensafely-chemotherapy-or-radiotherapy.csv": {
       "id": "opensafely/chemotherapy-or-radiotherapy/2020-04-15",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/chemotherapy-or-radiotherapy/2020-04-15/",
+      "url": "https://www.opencodelists.org/codelist/opensafely/chemotherapy-or-radiotherapy/2020-04-15/",
       "downloaded_at": "2021-12-15 16:13:15.990011Z",
       "sha": "41cd7183aee6e1932c4f9b09e8e93f3c7741d4e3"
     },
     "opensafely-ethnicity.csv": {
       "id": "opensafely/ethnicity/2020-04-27",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/ethnicity/2020-04-27/",
+      "url": "https://www.opencodelists.org/codelist/opensafely/ethnicity/2020-04-27/",
       "downloaded_at": "2021-10-28 20:33:20.611002Z",
       "sha": "3d2f3998b71863a80b24d60f6f4282e14191ae13"
     },
     "opensafely-glycated-haemoglobin-hba1c-tests.csv": {
       "id": "opensafely/glycated-haemoglobin-hba1c-tests/3e5b1269",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/glycated-haemoglobin-hba1c-tests/3e5b1269/",
+      "url": "https://www.opencodelists.org/codelist/opensafely/glycated-haemoglobin-hba1c-tests/3e5b1269/",
       "downloaded_at": "2022-09-07 20:40:47.211170Z",
       "sha": "2633371982cd2125e39972fa9a075a2b2ff50208"
     },
     "user-agleman-pancreatic_cancer_snomed.csv": {
       "id": "user/agleman/pancreatic_cancer_snomed/11566403",
-      "url": "https://codelists.opensafely.org/codelist/user/agleman/pancreatic_cancer_snomed/11566403/",
+      "url": "https://www.opencodelists.org/codelist/user/agleman/pancreatic_cancer_snomed/11566403/",
       "downloaded_at": "2022-02-22 11:00:10.871115Z",
       "sha": "68a1b0eb6896e6d6bb94fd912a90bc11e8797b0c"
     },
     "opensafely-diabetes.csv": {
       "id": "opensafely/diabetes/2020-04-15",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/diabetes/2020-04-15/",
+      "url": "https://www.opencodelists.org/codelist/opensafely/diabetes/2020-04-15/",
       "downloaded_at": "2021-12-15 16:13:16.959262Z",
       "sha": "f2781f0c9a0617b30996d681a798eedd152a09af"
     },
     "user-agleman-liver_function_tests.csv": {
       "id": "user/agleman/liver_function_tests/55f07be1",
-      "url": "https://codelists.opensafely.org/codelist/user/agleman/liver_function_tests/55f07be1/",
+      "url": "https://www.opencodelists.org/codelist/user/agleman/liver_function_tests/55f07be1/",
       "downloaded_at": "2021-12-03 17:58:01.878737Z",
       "sha": "ba23c40816b5aa523e7321ef66b8aed047c6d581"
     },
     "user-agleman-jaundice.csv": {
       "id": "user/agleman/jaundice/655a4816",
-      "url": "https://codelists.opensafely.org/codelist/user/agleman/jaundice/655a4816/",
+      "url": "https://www.opencodelists.org/codelist/user/agleman/jaundice/655a4816/",
       "downloaded_at": "2021-12-15 16:13:17.459545Z",
       "sha": "8ae10a30d2a063efed096be1c8436291c6c9743b"
     },
     "user-agleman-pancreatic-enzyme-replacement-therapy-dmd.csv": {
       "id": "user/agleman/pancreatic-enzyme-replacement-therapy-dmd/7137cecc",
-      "url": "https://codelists.opensafely.org/codelist/user/agleman/pancreatic-enzyme-replacement-therapy-dmd/7137cecc/",
-      "downloaded_at": "2022-03-25 14:45:37.757410Z",
-      "sha": "96b5d2a485eb14317b1fbc41361e44db04730044"
+      "url": "https://www.opencodelists.org/codelist/user/agleman/pancreatic-enzyme-replacement-therapy-dmd/7137cecc/",
+      "downloaded_at": "2024-06-16 21:23:56.585002Z",
+      "sha": "1ab270d39cd9a031428561fdc405d4d96f796483"
     },
     "user-agleman-resection-of-pancreatic-cancer-opcs-4.csv": {
       "id": "user/agleman/resection-of-pancreatic-cancer-opcs-4/7eb58e9a",
-      "url": "https://codelists.opensafely.org/codelist/user/agleman/resection-of-pancreatic-cancer-opcs-4/7eb58e9a/",
+      "url": "https://www.opencodelists.org/codelist/user/agleman/resection-of-pancreatic-cancer-opcs-4/7eb58e9a/",
       "downloaded_at": "2022-03-18 13:14:11.071149Z",
       "sha": "39aa544fe8661ff10e96d73b6ce333105b1c042d"
     },
     "user-agleman-pancreatic-imaging-opcs-4.csv": {
       "id": "user/agleman/pancreatic-imaging-opcs-4/65a61b65",
-      "url": "https://codelists.opensafely.org/codelist/user/agleman/pancreatic-imaging-opcs-4/65a61b65/",
+      "url": "https://www.opencodelists.org/codelist/user/agleman/pancreatic-imaging-opcs-4/65a61b65/",
       "downloaded_at": "2022-03-18 14:08:26.854391Z",
       "sha": "d5a3f475c95e3f6b807c3d2356264821a9f28d7a"
     }
