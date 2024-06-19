@@ -141,11 +141,9 @@ write.table(measure_registered_rate_rounded, here::here("output", "measure_regis
 
 
 X <- read_csv(here::here("output", "input.csv"))
-X <- X[which(X$pa_ca_date>="2015-01-01" & X$pa_ca_date<="2024-05-01"),]
+X <- X[which(X$pa_ca_date>="2019-01-01" & X$pa_ca_date<="2024-05-01"),]
 
 abc <- as.data.frame(dim(X))
-
-X$died_any_date <- as.Date(X$died_any_date)
 
 X$diffDays <- difftime(X$died_any_date, X$pa_ca_date, units = "days")
 X$diffWeeks <- difftime(X$died_any_date, X$pa_ca_date, units = "weeks")
