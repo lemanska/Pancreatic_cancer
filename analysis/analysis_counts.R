@@ -142,6 +142,11 @@ write.table(measure_registered_rate_rounded, here::here("output", "measure_regis
 
 X <- read_csv(here::here("output", "input.csv"))
 X <- X[which(X$pa_ca_date>="2015-01-01" & X$pa_ca_date<="2024-05-01"),]
+
+abc <- as.data.frame(dim(X))
+
+X$died_any_date <- as.Date(X$died_any_date)
+
 X$diffDays <- difftime(X$died_any_date, X$pa_ca_date, units = "days")
 X$diffWeeks <- difftime(X$died_any_date, X$pa_ca_date, units = "weeks")
 
@@ -159,11 +164,11 @@ monthly_count4 <- aggregate(. ~ Month, X[,c("Month","diffDaysNum","diffWeeksNum"
 
 colnames(monthly_count1) <- c("Month", "diffDaysMean", "diffWeeksMean")
 colnames(monthly_count2) <- c("Month", "diffDaysSum", "diffWeeksSum")
-#colnames(monthly_count3) <- c("Month", "diffDaysCount", "diffWeeksCount")
+colnames(monthly_count3) <- c("Month", "diffDaysCount", "diffWeeksCount")
 colnames(monthly_count4) <- c("Month", "diffDaysN", "diffWeeksN")
 
-month_mortality <- cbind(monthly_count1, monthly_count2, by = "Month")
-month_mortality <- cbind(month_mortality, monthly_count4, by = "Month")
+month_mortality <- cbind(monthly_count1, monthly_count4, by = "Month")
+#month_mortality <- cbind(month_mortality, monthly_count4, by = "Month")
 #month_count_mortality <- cbind(month_count_mortality, monthly_count3, by = "Month")
 
 #plot(c(1:dim(month_count_mortality)[1]),month_count_mortality$diffWeeksMean)
@@ -190,5 +195,10 @@ write.table(month_mortality, here::here("output", "month_mortality.csv"),
 write.table(monthly_count3, here::here("output", "monthly_count3.csv"),
             sep = ",",row.names = F)
 
+monthly_count3$Month <- as.Date(monthly_count3$Month)
+abc[3,] <- class(monthly_count3$Month)
+abc[4,] <- monthly_count3$Month[1]
 
+write.table(abc, here::here("output", "numberofcases.csv"),
+            sep = ",",row.names = F)
 

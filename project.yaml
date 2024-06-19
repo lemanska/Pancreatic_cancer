@@ -48,4 +48,5 @@ actions:
         Tab3: output/measure_registered_rate_rounded.csv
         Tab4: output/month_mortality.csv
         Tab5: output/monthly_count3.csv
+        Tab6: output/numberofcases.csv
         Fig1: output/weeks2.png
