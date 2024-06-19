@@ -139,14 +139,13 @@ write.table(measure_registered_rate_rounded, here::here("output", "measure_regis
             sep = ",",row.names = F)
 
 
-
+rm(X)
 X <- read_csv(here::here("output", "input.csv"))
 
-X <- X[,c(1:2)]
+X <- X[,c("pa_ca_date","died_any_date")]
 X <- X[which(X$pa_ca_date>="2019-01-01" & X$pa_ca_date<"2024-05-01"),]
 
-abc <- as.data.frame(dim(X))
-X$died_any_date[which(is.na(X$died_any_date))] <- "2024-04-30"
+X$died_any_date[which(is.na(X$died_any_date))] <- as.Date("2024-04-30", format = "%Y-%m-%d")
 
 X$diffDays <- difftime(X$died_any_date, X$pa_ca_date, units = "days")
 X$diffWeeks <- difftime(X$died_any_date, X$pa_ca_date, units = "weeks")
@@ -161,24 +160,12 @@ monthly_count2 <- aggregate(. ~ Month, X[,c("Month","diffDaysNum","diffWeeksNum"
 monthly_count3 <- aggregate(. ~ Month, X[,c("Month","diffDaysNum","diffWeeksNum")], count, na.action = na.omit)
 monthly_count4 <- aggregate(. ~ Month, X[,c("Month","diffDaysNum","diffWeeksNum")], length, na.action = na.omit)
 
-
-
 colnames(monthly_count1) <- c("Month", "diffDaysMean", "diffWeeksMean")
 colnames(monthly_count2) <- c("Month", "diffDaysSum", "diffWeeksSum")
 colnames(monthly_count3) <- c("Month", "diffDaysCount", "diffWeeksCount")
 colnames(monthly_count4) <- c("Month", "diffDaysN", "diffWeeksN")
 
 month_mortality <- cbind(monthly_count1, monthly_count4, by = "Month")
-#month_mortality <- cbind(month_mortality, monthly_count4, by = "Month")
-#month_count_mortality <- cbind(month_count_mortality, monthly_count3, by = "Month")
-
-#plot(c(1:dim(month_count_mortality)[1]),month_count_mortality$diffWeeksMean)
-
-
-#jpeg(file="saving_plot1.jpeg", path=here::here("output"))
-#plot(c(1:dim(month_count_mortality)[1]),month_count_mortality$diffWeeksMean)
-#dev.off()
-
 
 month_mortality$varX <- c(1:dim(month_mortality)[1])
 
@@ -196,12 +183,10 @@ write.table(month_mortality, here::here("output", "month_mortality.csv"),
 write.table(monthly_count3, here::here("output", "monthly_count3.csv"),
             sep = ",",row.names = F)
 
-monthly_count3$Month <- as.Date(monthly_count3$Month)
+abc <- as.data.frame(dim(X))
 abc[3,] <- class(monthly_count3$Month)
 abc[4,] <- monthly_count3$Month[1]
-
 abc[5,] <- length(which(X$diffWeeksNum<0))
-
 write.table(abc, here::here("output", "numberofcases.csv"),
             sep = ",",row.names = F)
 
