@@ -142,8 +142,8 @@ write.table(measure_registered_rate_rounded, here::here("output", "measure_regis
 
 X <- read_csv(here::here("output", "input.csv"))
 X <- X[which(X$pa_ca_date>="2015-01-01" & X$pa_ca_date<="2024-05-01"),]
-X$diffDays <- difftime(X$pa_ca_date, X$died_any_date, units = "days")
-X$diffWeeks <- difftime(X$pa_ca_date, X$died_any_date, units = "weeks")
+X$diffDays <- difftime(X$died_any_date, X$pa_ca_date, units = "days")
+X$diffWeeks <- difftime(X$died_any_date, X$pa_ca_date, units = "weeks")
 
 X$diffDaysNum <- as.numeric(X$diffDays)
 X$diffWeeksNum <- as.numeric(X$diffWeeks)
@@ -152,7 +152,7 @@ X$Month <- as.Date(cut(X$pa_ca_date, breaks = "month"))
 
 monthly_count1 <- aggregate(. ~ Month, X[,c("Month","diffDaysNum","diffWeeksNum")], mean, na.action = na.omit)
 monthly_count2 <- aggregate(. ~ Month, X[,c("Month","diffDaysNum","diffWeeksNum")], sum, na.action = na.omit)
-#monthly_count3 <- aggregate(. ~ Month, X[,c("Month","diffDaysNum","diffWeeksNum")], count, na.action = na.omit)
+monthly_count3 <- aggregate(. ~ Month, X[,c("Month","diffDaysNum","diffWeeksNum")], count, na.action = na.omit)
 monthly_count4 <- aggregate(. ~ Month, X[,c("Month","diffDaysNum","diffWeeksNum")], length, na.action = na.omit)
 
 
@@ -186,6 +186,9 @@ ggsave(
 write.table(month_mortality, here::here("output", "month_mortality.csv"),
             sep = ",",row.names = F)
 
+
+write.table(monthly_count3, here::here("output", "monthly_count3.csv"),
+            sep = ",",row.names = F)
 
 
 
