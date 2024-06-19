@@ -47,4 +47,4 @@ actions:
         Tab2: output/demographics.csv
         Tab3: output/measure_registered_rate_rounded.csv
         Tab4: output/month_mortality.csv
-        Fig1: output/weeks.png
+        Fig1: output/weeks2.png
