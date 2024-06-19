@@ -141,9 +141,12 @@ write.table(measure_registered_rate_rounded, here::here("output", "measure_regis
 
 
 X <- read_csv(here::here("output", "input.csv"))
-X <- X[which(X$pa_ca_date>="2019-01-01" & X$pa_ca_date<="2024-05-01"),]
+
+X <- X[,c(1:2)]
+X <- X[which(X$pa_ca_date>="2019-01-01" & X$pa_ca_date<"2024-05-01"),]
 
 abc <- as.data.frame(dim(X))
+X$died_any_date[which(is.na(X$died_any_date))] <- "2024-04-30"
 
 X$diffDays <- difftime(X$died_any_date, X$pa_ca_date, units = "days")
 X$diffWeeks <- difftime(X$died_any_date, X$pa_ca_date, units = "weeks")
@@ -196,6 +199,8 @@ write.table(monthly_count3, here::here("output", "monthly_count3.csv"),
 monthly_count3$Month <- as.Date(monthly_count3$Month)
 abc[3,] <- class(monthly_count3$Month)
 abc[4,] <- monthly_count3$Month[1]
+
+abc[5,] <- length(which(X$diffWeeksNum<0))
 
 write.table(abc, here::here("output", "numberofcases.csv"),
             sep = ",",row.names = F)
